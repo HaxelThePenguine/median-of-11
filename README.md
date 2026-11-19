@@ -4,6 +4,8 @@ How small can a fixed circuit be if it only has to return the middle of eleven n
 
 Each operation on wires `i < j` sends the smaller input to `i` and the larger to `j`. Wire 5 (numbering from zero) must return the sixth smallest input for every totally ordered input tuple, including ties. The objective counts comparators. Depth is unrestricted.
 
+[Read the English research note](PAPER.md) · [Dimostrazione in italiano](PROOF.md)
+
 ## Verify the result
 
 Run these commands from the repository root with Python 3.10 or later. Verification uses the standard library.

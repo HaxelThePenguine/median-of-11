@@ -1,0 +1,35 @@
+# Perché la rete da 25 è ottima
+
+La costruzione è quella di Bert Dobbelaere. Il limite inferiore è una prova finita per induzione sulla larghezza. Il certificato fornito permette di ripetere tutta l’induzione, inclusi i casi a 9 ingressi. Non richiede di assumere i risultati di un altro autore.
+
+## Due strati di input
+
+Sia r il rango crescente, contato da 1. Sul binario il risultato passa da 0 a 1 quando il peso passa da w=n−r a w+1. Una rete di comparatori è monotona e conserva il peso. Se un filo distingue tutti gli input di questi due pesi, la monotonicità ne determina il valore per ogni altro peso. Applicare una soglia ai dati commuta con minimo e massimo, quindi il risultato vale su ogni insieme totalmente ordinato.
+
+C’è una conseguenza per **tutti** i fili. Prendi due input di peso w che differiscono per lo scambio di uno 0 con un 1. La loro unione coordinata ha peso w+1. Il suo output domina entrambi gli output e ha un unico 1 in più, necessariamente sul filo selezionato. I due output inferiori sono dunque identici. Tutti gli input di peso w si collegano con questi scambi. Anche tutti gli input di peso w+1 hanno la stessa uscita, ottenuta aggiungendo quell’unico 1 all’uscita di peso w. L’argomento include gli strati estremi con un unico input. Questo è un effetto della sola specifica sul filo selezionato.
+
+## Lettura breve del passaggio decisivo
+
+In una rete valida, considera il primo comparatore che riusa un filo. I comparatori precedenti sono disgiunti. Sul filo riusato può arrivare un minimo globale se è l’uscita bassa del comparatore precedente, oppure un massimo globale se è l’uscita alta. Scegli quell’estremo su uno dei suoi ingressi originali. Ha già attraversato due comparatori. Il filo su cui si trova adesso dipende da al massimo quattro ingressi originali.
+
+Se uno degli strati di confine ha almeno quattro zeri e quattro uni, quel filo deve ancora cambiare tramite un altro comparatore. Infatti, sullo stesso strato, possiamo mettere tutti gli ingressi da cui dipende prima a zero e poi a uno. Il filo assume entrambi i valori, mentre ogni filo finale deve essere costante su quello strato. La rete deve anche contenere un primo riuso, perché con soli confronti disgiunti nessun filo potrebbe essere costante su uno strato così fatto. Abbiamo quindi un estremo che attraversa almeno tre comparatori. Questa dimostrazione ammette anche comparatori con uscite orientate liberamente.
+
+Fissa quell’ingresso a un valore sentinella sempre minimo o sempre massimo. Il suo percorso è deterministico. Ogni comparatore che lo tocca diventa un collegamento fisso per l’altro valore. Cancellando il percorso restano almeno tre comparatori in meno e un ingresso in meno. Il rango desiderato scende di uno se abbiamo eliminato il minimo, resta invariato se abbiamo eliminato il massimo. I collegamenti fissi si assorbono rinominando i fili. Il limite inferiore è verificato per comparatori orientabili in entrambi i sensi e per un filo di uscita a scelta.
+
+Per (11,6) lo strato di peso 5 soddisfa la condizione. Si arriva a (10,5) o (10,6), che soddisfano ancora la condizione, per esempio sullo strato di peso 5 per entrambi. Dopo un secondo passo si arriva a (9,4), (9,5) o (9,6). Il certificato verifica che ognuno richiede almeno 19 comparatori, usando la dualità fra i ranghi 4 e 6. Seguono 19+3+3=25 e quindi l’ottimalità della costruzione. Il verificatore controlla anche i due passi finali con l’enumerazione dei prefissi descritta sotto.
+
+## Come si controllano i casi base e l'intera prova
+
+Una proposizione del manifesto (n,r,L) esclude ogni soluzione con al massimo L comparatori. I soli limiti di larghezza inferiore utilizzabili sono quelli già verificati, oppure il limite banale zero. Invertire tutti i bit e scambiare le uscite dei comparatori scambia r con n+1−r, nella classe orientabile. Il caso con un solo ingresso richiede zero comparatori.
+
+Lo stato di un prefisso contiene separatamente le immagini A e B dei due strati. Si può continuare con comparatori di qualunque orientamento e terminare su qualunque filo. Vale quanto segue.
+
+* Con k operazioni residue ogni strato può ridursi di un fattore al massimo 2 per passo. Più di 2^k immagini distinte escludono il completamento.
+* Per ogni posizione iniziale, segui separatamente dove andrebbe un minimo o un massimo globale. Se un estremo ha già attraversato d comparatori, eliminarlo dal circuito completo darebbe una rete più stretta di taglia al massimo L−d. Se il limite provato per il corrispondente problema ridotto è b, serve quindi d≤L−b. Quando d=L−b quel filo non può più partecipare a comparatori. Se varia ancora su uno dei due strati il prefisso è impossibile. Per un estremo la cui eliminazione rende il rango indefinito si usa soltanto il limite banale d≤L.
+* Si considera ogni coppia non ordinata. Invertire le due uscite equivale a permutarle prima di una continuazione arbitrariamente orientata. Se il comparatore equivale sempre a un’identità o a una permutazione fissa sui due strati presi insieme, si può ometterlo e rinominare i fili della continuazione. Ogni soluzione di taglia minima nel problema residuo ammette perciò un primo passo nel sottoinsieme esplorato, oppure ha già finito. Il controllo verifica esplicitamente a ogni nodo se esiste già un filo separatore.
+* Un’esclusione conclusa per un dato budget si può riusare per un budget minore o uguale e per le stesse due immagini a meno di una permutazione comune. Qualunque continuazione che distingua le immagini distingue anche gli input iniziali dei due strati. Perciò l’esclusione riguarda il problema residuo anche quando la sua prova usa le traiettorie di un prefisso specifico. Il controllo riutilizza solo esclusioni già concluse, mai un nodo ancora in corso.
+* Le simmetrie utilizzate si limitano alla dualità di rango, all’assorbimento di permutazioni dei fili e al confronto di immagini realmente uguali dopo una permutazione esplicita. Un’uguaglianza dei soli conteggi per filo non autorizza la potatura.
+
+Il certificato è un albero compresso per ogni proposizione. Un byte per nodo indica espansione, potatura per numero di immagini, riferimento già provato, o filo bloccato. L’ordine delle coppie è lessicografico. Il verificatore ricostruisce tutti i figli dovuti, controlla ogni giustificazione e pretende di consumare esattamente il certificato. Il generatore usa bitset e profondità massime per filo. Il verificatore usa insiemi espliciti di configurazioni e segue ciascuna posizione iniziale separatamente. I digest nel log del generatore sono diagnostici. La validità si controlla rileggendo la prova.
+
+Il certificato è un formato combinatorio specifico, leggibile con Python standard. Non è un file LRAT. Il solver SAT globale ha restituito unknown e nessun risultato SAT globale è usato nel limite inferiore.

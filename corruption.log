@@ -1,0 +1,3 @@
+REJECT false cache reference unproven reference
+REJECT truncation invalid or missing proof node
+REJECT 24-gate truncated baseline, failing masks: 490

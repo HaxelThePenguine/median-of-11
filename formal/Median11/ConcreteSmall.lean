@@ -80,6 +80,10 @@ theorem bound_8_3 : Bound 8 3 14 :=
   verify_replay_sound (budget := 13) (by decide) (by decide) (Or.inr ⟨by decide, bound_7_2⟩)
     (Or.inr ⟨by decide, bound_7_3⟩) data8_3 (by decide +kernel)
 
+theorem bound_9_1 : Bound 9 1 8 :=
+  verify_replay_sound (budget := 7) (by decide) (by decide) (Or.inl rfl)
+    (Or.inr ⟨by decide, bound_8_1⟩) data9_1 (by decide +kernel)
+
 #print axioms bound_6_3
 
 end Median11

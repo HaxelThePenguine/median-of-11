@@ -77,18 +77,20 @@ Tejasvi~Singh Tomar.
 \newblock Exact sizes of networks that select the three or four largest of
   {$n$} elements, 2026.
 \newblock
-  \href{https://www.mefyi.com/papers/selection-networks-three-four-largest/}{Preprint}.
+  \href{https://www.mefyi.com/papers/selection-networks-three-four-largest/}{Preprint},
+  \doi{10.5281/zenodo.23783463}.
 
 \bibitem{tomarsort}
 Tejasvi~Singh Tomar.
 \newblock Sorting networks on 13 inputs need 45 comparators, 2026.
-\newblock Preprint.
-  \url{https://www.mefyi.com/papers/sorting-networks-13-inputs-45/}.
+\newblock
+  \href{https://www.mefyi.com/papers/sorting-networks-13-inputs-45/}{Preprint},
+  \doi{10.5281/zenodo.23504358}.
 
 \bibitem{yao}
 Andrew Chi-Chih Yao.
 \newblock Bounds on selection networks.
-\newblock {\em SIAM Journal on Computing}, 9, 1980.
+\newblock {\em SIAM Journal on Computing}, 9(3):566--582, 1980.
 \newblock \doi{10.1137/0209043}.
 
 \end{thebibliography}

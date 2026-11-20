@@ -18,6 +18,11 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y latexmk texlive-latex-extra texlive-pictures texlive-fonts-recommended
       - name: Compile the paper and reviewer summary
         run: bash scripts/build-paper.sh
+      - name: Validate the research archive
+        run: |
+          archive_dir="$(mktemp -d)"
+          bash scripts/archive.sh "$archive_dir"
+          unzip -tq "$archive_dir"/*.zip
       - uses: actions/upload-artifact@v4
         with:
           name: manuscript

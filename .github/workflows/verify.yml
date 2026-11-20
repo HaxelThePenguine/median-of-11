@@ -1,0 +1,47 @@
+name: Research artifact
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay, regenerate and cross-check
+        run: bash scripts/verify.sh
+
+  manuscript:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install LaTeX
+        run: sudo apt-get update && sudo apt-get install -y latexmk texlive-latex-extra texlive-pictures texlive-fonts-recommended
+      - name: Compile the paper and reviewer summary
+        run: bash scripts/build-paper.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: manuscript
+          path: |
+            paper/main.pdf
+            review/summary.pdf
+
+  lean:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean
+        run: |
+          curl -fsSL --retry 3 https://github.com/leanprover/lean4/releases/download/v4.19.0/lean-4.19.0-linux.tar.zst -o "$RUNNER_TEMP/lean.tar.zst"
+          cd "$RUNNER_TEMP"
+          sha256sum -c "$GITHUB_WORKSPACE/verification/lean/toolchain.sha256"
+          tar --zstd -xf lean.tar.zst
+          realpath lean-4.19.0-linux/bin >> "$GITHUB_PATH"
+      - name: Build kernel proofs and audit axiom dependencies
+        run: bash scripts/verify-lean.sh
+      - name: Cross-check complete executable Lean replay against Python
+        run: |
+          bash scripts/evaluate-lean-archive.sh > "$RUNNER_TEMP/lean-replay.log"
+          python3 -O check_certificate.py > "$RUNNER_TEMP/python-replay.log"
+          diff -u "$RUNNER_TEMP/python-replay.log" "$RUNNER_TEMP/lean-replay.log"
+          tail -n 1 "$RUNNER_TEMP/lean-replay.log"

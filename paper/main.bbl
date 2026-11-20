@@ -1,0 +1,94 @@
+\begin{thebibliography}{10}
+
+\bibitem{afshani}
+Peyman Afshani, Rolf Fagerberg, David Hammer, Riko Jacob, Irina Kostitsyna,
+  Ulrich Meyer, Manuel Penschuck, and Nodari Sitchinava.
+\newblock Fragile complexity of comparison-based algorithms, 2019.
+\newblock \href{https://arxiv.org/abs/1901.02857v2}{arXiv:1901.02857v2}, Lemmas
+  17--18.
+
+\bibitem{codish}
+Michael Codish, Lu{\'i}s Cruz-Filipe, Michael Frank, and Peter Schneider-Kamp.
+\newblock Sorting nine inputs requires twenty-five comparisons.
+\newblock {\em Journal of Computer and System Sciences}, 82:551--563, 2016.
+\newblock \doi{10.1016/j.jcss.2015.11.014}.
+
+\bibitem{lrat}
+Lu{\'i}s Cruz-Filipe, Marijn J.~H. Heule, Warren A.~Hunt Jr., Matt Kaufmann,
+  and Peter Schneider-Kamp.
+\newblock Efficient certified {RAT} verification.
+\newblock In {\em Automated Deduction---CADE 26}, pages 220--236, 2017.
+\newblock \doi{10.1007/978-3-319-63046-5_14}.
+
+\bibitem{dobb}
+Bert Dobbelaere.
+\newblock Median selection networks for a given number of inputs, 2026.
+\newblock Catalogue, entry $(11,25,11)$, accessed 20 November 2026.
+  \url{https://bertdobbelaere.github.io/median_networks.html}.
+
+\bibitem{gsi}
+{Generalised Superintelligence}.
+\newblock Graphs two below the {Moore} bound, and the median of nine inputs,
+  2026.
+\newblock Research report, 16 November.
+  \url{https://generalised.si/research/moore-bound-defect-two}.
+
+\bibitem{harder}
+Jannis Harder.
+\newblock An answer to the {Bose--Nelson} sorting problem for 11 and 12
+  channels, 2020.
+\newblock \href{https://arxiv.org/abs/2012.04400}{arXiv:2012.04400}.
+
+\bibitem{knuth}
+Donald~E. Knuth.
+\newblock {\em The Art of Computer Programming, Vol. 3: Sorting and Searching}.
+\newblock Addison-Wesley, second edition, 1998.
+\newblock Section 5.3.4.
+
+\bibitem{pippenger}
+Nicholas Pippenger.
+\newblock Selection networks.
+\newblock {\em SIAM Journal on Computing}, 20:878--887, 1991.
+\newblock \doi{10.1137/0220054}.
+
+\bibitem{sekanina}
+Luk{\'a}{\v s} Sekanina.
+\newblock Evolutionary design space exploration for median circuits.
+\newblock In {\em Applications of Evolutionary Computing}, volume 3005 of {\em
+  LNCS}, pages 240--249, 2004.
+\newblock \doi{10.1007/978-3-540-24653-4_25}.
+
+\bibitem{filter}
+Luk{\'a}{\v s} Sekanina, Zden{\v e}k Va{\v s}{\'i}{\v c}ek, and Vojt{\v e}ch
+  Mr{\'a}zek.
+\newblock Approximate circuits in low-power image and video processing: The
+  approximate median filter.
+\newblock {\em Radioengineering}, 26:623--632, 2017.
+
+\bibitem{smith}
+John~L. Smith.
+\newblock Implementing median filters in {XC4000E FPGAs}.
+\newblock {\em Xcell}, (23):16, 1996.
+\newblock
+  \url{https://bitsavers.trailing-edge.com/components/xilinx/xcell/Xcell23.pdf}.
+
+\bibitem{tomar}
+Tejasvi~Singh Tomar.
+\newblock Exact sizes of networks that select the three or four largest of
+  {$n$} elements, 2026.
+\newblock
+  \href{https://www.mefyi.com/papers/selection-networks-three-four-largest/}{Preprint}.
+
+\bibitem{tomarsort}
+Tejasvi~Singh Tomar.
+\newblock Sorting networks on 13 inputs need 45 comparators, 2026.
+\newblock Preprint.
+  \url{https://www.mefyi.com/papers/sorting-networks-13-inputs-45/}.
+
+\bibitem{yao}
+Andrew Chi-Chih Yao.
+\newblock Bounds on selection networks.
+\newblock {\em SIAM Journal on Computing}, 9, 1980.
+\newblock \doi{10.1137/0209043}.
+
+\end{thebibliography}

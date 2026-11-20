@@ -1,59 +1,49 @@
-# Median of eleven in 25 comparators
+# Optimality of a 25-Comparator Median Selection Network on Eleven Inputs
 
-How small can a fixed circuit be if it only has to return the middle of eleven numbers? In the compare–exchange model, **25 comparators suffice and 24 are impossible**. This repository pairs a published 25-comparator circuit with a reproducible finite certificate for the lower bound.
+A computer-assisted proof gives a matching lower bound for Bert Dobbelaere's published 25-comparator construction. The network is a fixed sequence of compare–exchange operations. Each pair `i < j` places the smaller value on wire `i` and the larger on wire `j`. Wire 5, numbered from zero, returns the sixth smallest input, including ties. The size bound allows arbitrary depth.
 
-Each operation on wires `i < j` sends the smaller input to `i` and the larger to `j`. Wire 5 (numbering from zero) must return the sixth smallest input for every totally ordered input tuple, including ties. The objective counts comparators. Depth is unrestricted.
+**Version 1.0.0.** Lean 4.19.0 checks the exact-size theorem `Median11.median11_optimal` without certificate hypotheses. The kernel verifies the upper-bound witness, the reduction, and the concrete nine-wire exclusions at ranks four and five with their prerequisite bounds. Python, C++ and the Lean executable checker replay the complete computational certificate with matching results.
 
-[Read the English research note](PAPER.md) · [Dimostrazione in italiano](PROOF.md)
+| Entry point | Start here |
+|---|---|
+| Read the paper | [PDF](paper/main.pdf) · [LaTeX](paper/main.tex) · [Bibliography](paper/references.bib) |
+| Verify the mathematical theorem | [Proof and formal status](docs/formal-verification.md) · [Kernel build script](scripts/verify-lean.sh) |
+| Verify the computational certificate | [Replay script](scripts/verify.sh) · [Format](docs/certificate.md) · [Claims](certificate/claims.json) |
+| Inspect the Lean formalization | [Lean project](formal) · [Optimality statement](formal/Median11/Optimality.lean) |
+| Reproduce the experiments | [Verification and environment](docs/reproducibility.md) · [Search experiments](EXPERIMENTS.it.md) |
+| Review the result | [One-page summary](review/summary.pdf) · [Reviewer guide](review/README.md) · [Adversarial report](docs/review-report.md) |
+| Cite this work | [Citation metadata](CITATION.cff) · [Archive versions](#archived-versions) |
 
-## Verify the result
+## Reproduce the checks
 
-Run these commands from the repository root with Python 3.10 or later. Verification uses the standard library.
+On Linux, install Python 3.10+, a C++20 compiler, zlib headers, Lean 4.19.0, and LaTeX with `latexmk`. Run from the repository root.
 
 ```sh
-python3 verify.py median11_25.json
-python3 check_certificate.py
+bash scripts/verify.sh
+bash scripts/verify-lean.sh
+(cd paper && latexmk -pdf main.tex)
 ```
 
-The first prints `n=11 size=25 errors=0/2048 first=[]`. The second ends with `ACCEPT median(11) >= 25; 174008 proof nodes`. The two checks establish different halves of the result.
+The computational audit checks all 2,048 binary inputs and all 177,147 ternary inputs, then runs two independent implementations of the lower-bound replay and compares their results. Both accept all 26 claims and report `ACCEPT median(11) >= 25; 174008 proof nodes`. It regenerates the certificate, checks adversarial mutations, and compares against an independent exhaustive calculation at widths two through six. The exact source relation between the catalogue witness JSON and Lean is checked by the Lean build script.
 
-| Evidence | What the program checks |
-|---|---|
-| [Network](median11_25.json) and [scalar verifier](verify.py) | Executes the circuit on all binary inputs. Thresholding commutes with compare–exchange, extending the result to arbitrary ordered values. |
-| [Certificate](certificate/claims.json) and [checker](check_certificate.py) | Replays 26 finite exclusions, from two inputs through eleven. Earlier checked bounds can be used at larger widths. |
-| [Proof and pruning rules, in Italian](PROOF.md) | Justifies boundary layers, extreme-input deletion, wire relabelling and reuse of completed subproblems. |
-| [Search experiments and commands, in Italian](EXPERIMENTS.it.md) | Reproduces local resynthesis, annealing, exact repair and the global SAT attempts. The unrestricted SAT runs returned unknown. |
+For individual runs, the original commands `python3 verify.py median11_25.json` and `python3 check_certificate.py` remain available. See [the verification record](docs/reproducibility.md) for additional commands.
 
 ## Why the lower bound works
 
-Suppose a circuit with 24 comparators computes the median. On the two binary layers with five and six ones, changing a single input bit across the boundary must change the designated output. Comparators preserve the number of ones and are monotone, so every other output stays fixed across that change. Moving between inputs on a layer by exchanging a zero and a one shows that the entire final configuration is constant on each layer.
+Selecting the correct output bit forces every remaining output bit to be fixed within each boundary layer. At the first comparison that reuses a wire, the earlier comparisons are disjoint. One extreme input can traverse both comparisons. Its current output still varies on a balanced boundary layer, so a later comparison must touch its wire. Removing the extreme removes at least three comparators. Apply this reasoning at widths eleven and ten, then replay the exclusions of size 18 for ranks four and five at width nine. Rank six follows by duality. The lower-bound model allows either orientation and any fixed output wire throughout.
 
-Take the first comparator that reuses a wire. All earlier comparisons are disjoint. We can choose a global minimum or maximum that passes through the reused wire and encounters both comparisons. Its current wire depends on at most four original inputs. Those four can all be zero or all be one on the five-ones layer. The wire therefore varies on that layer and must participate in another comparison before it can be a final output.
+## Archived versions
 
-Fix that extreme input permanently and remove its path. Every comparison it encounters becomes a fixed routing of the other value. This removes at least three comparators. After removal, wires may be relabelled and comparator outputs may have either orientation. The lower-bound argument allows both orientations and any output wire. The same reasoning applies at width ten.
+Cite version 1.0.0 by its Git tag. The earlier archived snapshots have their own version-specific DOIs.
 
-| Remaining inputs | Required rank (one-based) | Maximum comparators if 24 sufficed |
-|---|---|---|
-| 11 | 6 | 24 |
-| 10 | 5 or 6 | 21 |
-| 9 | 4, 5 or 6 | 18 |
+| Snapshot | Archive |
+|---|---|
+| `v1.0.0-rc.1` | [10.5281/zenodo.24397284](https://doi.org/10.5281/zenodo.24397284) |
+| `v1.0.0-rc.2` | [10.5281/zenodo.24397716](https://doi.org/10.5281/zenodo.24397716) |
+| All versions | [10.5281/zenodo.24397283](https://doi.org/10.5281/zenodo.24397283) |
 
-Each of the three final ranks requires at least 19 comparators. The certificate checks the smaller-width bounds as well. This gives the contradiction and the lower bound of 25.
+## Attribution and licensing
 
-## Reproduce the self-review
+Bert Dobbelaere published the [25-comparator construction](https://bertdobbelaere.github.io/median_networks.html#N11L25D11). The project contributes the matching lower-bound argument and verification artifact. Historical priority for the proof remains open. Development used substantial AI assistance.
 
-```sh
-python3 verify.py
-python3 corruption.py
-python3 audit_small.py
-python3 lower.py --output rebuilt > rebuilt.jsonl
-python3 -O check_certificate.py rebuilt
-```
-
-The review regenerated the proof from the distributed sources and compared it with the supplied certificate. It also tested truncated proof data, an invalid cache reference and a damaged circuit. An additional breadth-first search recomputed all eight listed claims through five inputs without extreme-path pruning, memoised proof references or the certificate. A separate check exercised 720 permutations of six varying values among eleven distinct keys.
-
-Three points matter when auditing the checker. A frozen wire may be discarded only if a previously established smaller-width bound forbids touching it again. Cached exclusions must compare the actual sets of outputs under one common wire permutation. Finally, the indirect lower bound must survive arbitrary orientations after deleting a sentinel wire. The checker and the proof address these conditions explicitly. Generator and checker are separate implementations developed in the same AI-assisted project. External review and historical priority remain open.
-
-## Attribution
-
-The 25-comparator construction is listed by Bert Dobbelaere. A November 2026 report gives the relevant nine-input selection bounds. The repository supplies its own finite checks for those bounds. [Dobbelaere’s median networks](https://bertdobbelaere.github.io/median_networks.html) · [Nine-input results](https://generalised.si/research/moore-bound-defect-two)
+Copyright © 2026 Rocco Martino for the original work. The [MIT License](LICENSE) covers original Python and C++ sources, Lean formalization, verification tools and computational certificates. [CC BY 4.0](LICENSE-PAPER.md) covers the original manuscript, LaTeX sources, figures and explanatory material. See [third-party notices](THIRD-PARTY.md) for the catalogue witness and its upstream license.

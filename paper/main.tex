@@ -1,0 +1,213 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage{amssymb,booktabs,tikz}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalize,nameinlink,noabbrev]{cleveref}
+\hypersetup{pdftitle={Optimality of a 25-Comparator Median Selection Network on Eleven Inputs},pdfauthor={Rocco Martino}}
+\newcommand{\doi}[1]{\href{https://doi.org/#1}{doi:\nolinkurl{#1}}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\wt}{\operatorname{wt}}
+\title[Optimal median selection on eleven inputs]{Optimality of a 25-Comparator Median Selection Network on Eleven Inputs}
+\author{Rocco Martino}
+\date{20 November 2026, version 1.0.0}
+\keywords{Comparator networks, order statistics, size optimality, computer-assisted proof}
+\subjclass[2020]{68P10, 68Q17}
+\begin{document}
+\begin{abstract}
+Exactly 25 comparators are necessary and sufficient to place the median of
+eleven inputs on a prescribed middle wire in a fixed compare-exchange
+network. The upper bound is a network listed by Bert Dobbelaere. For the
+lower bound we allow either comparator orientation and any fixed output wire.
+Selection collapses each of two consecutive Hamming layers to a single
+configuration. On a sufficiently balanced layer this forces one extreme
+input to meet three comparators. Two deletions reduce the lower bound to
+ranks four and five on nine wires, up to duality. A finite exclusion
+certificate establishes both inequalities and their prerequisites. Python
+and C++ checkers replay all 174\,008 nodes of the full certificate,
+including direct exclusions at widths ten and eleven. The Lean kernel
+checks the exact-size theorem, including the two nine-wire exclusions
+and their prerequisites.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+A comparator network for a median filter can discard ordering information
+as soon as the median is determined. An explicit circuit gives an upper
+bound on its cost. A matching lower bound must exclude every shorter
+sequence, including sequences of greater depth.
+\begin{theorem}\label{thm:main}
+For eleven wires numbered $0,\ldots,10$, the minimum number of
+compare-exchanges with the smaller output on the lower-numbered wire
+that select the sixth smallest input on wire 5 is 25.
+\end{theorem}
+Dobbelaere's catalogue gives the construction used here \cite{dobb}.
+Sekanina's eleven-input circuit has 26 compare-exchanges and 42 live
+min/max subcomponents \cite[Table 3]{sekanina}. A later image-filter
+study describes its seed circuits as optimal \cite{filter}. Neither
+source supplies an exclusion of size 24 in our model. A report dated
+16 November 2026 gives exact single-rank sizes through nine inputs,
+including both base bounds used here \cite{gsi}. Our certificate rederives
+the needed inequalities.
+
+Yao studies networks selecting the smallest $t$ elements \cite{yao}.
+Pippenger treats partition into two equally sized groups \cite{pippenger}.
+Afshani et al.\ show that a single-rank network induces a fixed partition of
+its outputs \cite[Lemmas 17--18]{afshani}. The two singleton images below
+are a Boolean formulation of this phenomenon. Tomar proves a two-comparison
+deletion step for selecting a group of largest elements \cite[Lemma 1.4]{tomar}
+and uses extreme deletion for sorting \cite{tomarsort}. Smith published a
+19-comparator median network for nine inputs, described it as minimal and
+supplied no exclusion proof in the article \cite[Fig.~1]{smith}. Harder generalizes
+the Van Voorhis deletion bound to sorting residual input sets and verifies
+a certificate in Isabelle/HOL \cite{harder}. We specialize the path argument
+to a single interior rank and combine it with a two-layer search. We found
+no earlier proof of \cref{thm:main} in the sources examined.
+The contribution here is the size lower bound for an existing construction.
+Historical priority remains open.
+
+\section{Model and threshold reduction}
+An oriented gate $(a,b)$ has distinct ports. It writes the smaller of $x_a,x_b$
+to $a$ and the larger to $b$. All other coordinates are unchanged.
+A network is a fixed finite sequence of gates in the usual comparator model \cite{knuth}. Its size is its length.
+It may use the same pair repeatedly. There is no fan-out, auxiliary storage,
+constant source, adaptive branch, or restriction on depth. One fixed
+coordinate is the output. For $1\le r\le n$ let $C(n,r)$ be the minimum
+size with arbitrary orientations and free choice of that coordinate. Ranks
+increase from one. The physical model in \cref{thm:main} requires $a<b$
+and output 5. Its minimum is at least $C(11,6)$.
+
+Let $H_s=\{x\in\{0,1\}^n:\wt(x)=s\}$ and $w=n-r$. Each gate preserves
+weight and is monotone in the coordinatewise order, in either orientation.
+For any threshold $t$ in a total order, applying $v\mapsto{\bf1}_{v\ge t}$
+commutes with each gate and with the $r$th order statistic.
+\begin{proposition}\label{prop:zero}
+A fixed output selects rank $r$ on every ordered input if and only if it is
+zero throughout $H_w$ and one throughout $H_{w+1}$.
+\end{proposition}
+\begin{proof}
+Necessity follows on binary inputs. Extend an input of weight at most $w$
+up to weight $w$, or restrict one of weight at least $w+1$ to weight $w+1$.
+Monotonicity gives the required bit. If an ordered output differs from the
+desired value, the larger of the two values is a separating threshold.
+This includes ties and requires no density assumption.
+\end{proof}
+The optimum is the same over any fixed domain with at least two ordered
+values, since those values embed the Boolean test. Complementing the bits
+and reversing every gate orientation interchanges $r$ and $n+1-r$.
+Applying this operation twice gives $C(n,r)=C(n,n+1-r)$.
+
+\begin{proposition}[Untangling, cf.\ {\cite[Section 2]{tomar}}]\label{prop:untangle}
+$C(n,r)$ also equals the minimum for standard gates $a<b$ and prescribed
+output $r-1$ in zero-based numbering.
+\end{proposition}
+\begin{proof}
+Maintain a bijection from logical labels to physical wires, initially the
+identity. For a logical gate compare the two labelled physical wires in
+standard orientation. Assign the logical minimum port to the smaller
+physical index and the other port to the larger. Induction gives the same
+logical state at every step, with no physical swap gates. The final output
+label maps to a fixed physical wire. On a strictly increasing input every
+standard gate is idle, so the physical output must be wire $r-1$. Such
+an input may be taken in the integers by \cref{prop:zero}. The reverse
+inequality follows by inclusion.
+\end{proof}
+Thus the single-rank bounds in \cite{gsi} have the same output convention
+after untangling. Our replay provides a self-contained basis for using them.
+
+\section{Boundary-layer rigidity}
+\begin{lemma}\label{lem:rigid}
+If $F$ selects on wire $q$, there exists $u\in H_w$, $u_q=0$, such that
+$F(H_w)=\{u\}$ and $F(H_{w+1})=\{u+e_q\}$.
+\end{lemma}
+\begin{proof}
+For a cover $x\le y$ from $H_w$ to $H_{w+1}$, the outputs are comparable
+and their weights differ by one. The selected coordinate changes from zero
+to one, exhausting that difference. Thus $F(y)=F(x)+e_q$.
+If $x,x'$ have weight $w$ and exchange one occupied position for another,
+their union is a common upper neighbour. Subtracting $e_q$ gives
+$F(x)=F(x')$. Given any two $w$-subsets, repeatedly move one element
+outside the target into one missing position. The symmetric difference
+decreases by two each time. This proves connectivity, including the
+singleton case $w=0$. Every $(w+1)$-subset has a $w$-subset, also when
+$w=n-1$. The cover identity gives the upper image.
+\end{proof}
+Conversely, if both images of a prefix are singletons, any cover exhibits
+one differing coordinate, which separates the layers. On ordered distinct
+keys the occupied positions on either side of the chosen rank can be read
+by thresholding at that rank and just above it. This is the fixed-partition
+property of \cite{afshani}.
+
+\section{Deleting an extreme input}
+\begin{lemma}\label{lem:three}
+Suppose $\min(s,n-s)\ge4$ for some $s\in\{n-r,n-r+1\}$.
+In every rank-$r$ network an original input position and a choice of
+unique minimum or maximum exist whose route meets at least three gates.
+\end{lemma}
+\begin{proof}
+The syntactic support of a wire starts as its input singleton. At a gate
+both supports become the union of the two incoming supports. If all values
+on a support are the same bit, the wire carries that bit, by induction.
+A support of size at most four can be filled entirely with zeros or entirely
+with ones while extending each assignment to the same $H_s$. Its wire varies
+on that layer.
+
+If all gates were disjoint, every final support would have size at most two,
+contradicting \cref{lem:rigid}. Let $g$ be the earliest gate reusing a
+wire and choose a reused port $a$. The preceding gates form a matching,
+so exactly one earlier gate $h$ touched $a$. Put a unique minimum on an
+input of $h$ if $a$ was its minimum output, a unique maximum otherwise.
+It traverses $h$, stays at $a$ until $g$, and takes the corresponding output
+of $g$. Each input of $g$ has support of size at most two. Even if both came
+from $h$, the union has size at most four. The output carrying the extreme
+therefore varies on $H_s$ and must be touched again by \cref{lem:rigid}.
+At its next encounter the chosen extreme is still on that wire. The variation
+test uses ordinary binary inputs to establish a property of the fixed wiring.
+\end{proof}
+\begin{lemma}[Deletion]\label{lem:delete}
+Fix an input of an $m$-gate oriented network to a strict external sentinel.
+If its route meets $d$ gates, the surviving output tuple, up to one fixed
+bijection, is computed on $n-1$ wires with $m-d$ gates. If the original
+network selects rank $r$, deleting a minimum selects $r-1$ when $r>1$,
+and deleting a maximum selects $r$ when $r<n$.
+\end{lemma}
+\begin{proof}
+Adjoin a value below, or above, the ordinary domain. Correctness extends
+to it by \cref{prop:zero}. At time $t$ maintain the sentinel position $p_t$
+and a bijection $\lambda_t$ from physical positions other than $p_t$ to
+reduced wire labels. Initially use any enumeration of those positions.
+The invariant is that each ordinary physical value equals the value at its
+label for every assignment of the remaining inputs.
+
+If $(a,b)$ misses $p_t$, append $(\lambda_t(a),\lambda_t(b))$ to the
+reduced sequence and keep the bijection. Otherwise the sentinel takes its
+prescribed output, $a$ for a minimum and $b$ for a maximum. Transfer the
+label of the unique ordinary incoming port to the other outgoing port,
+leaving all unaffected labels fixed. This is a bijection on the new
+complement and requires no reduced gate. These updates prove the invariant
+and count by induction. They depend only on the wiring and sentinel sign.
+For the ranks specified, the selected value is ordinary. Hence the final
+bijection maps the original output to a single fixed reduced wire.
+Inserting the sentinel shifts the rank of each ordinary occurrence by one
+for a minimum and zero for a maximum, also with repeated values.
+\end{proof}
+\begin{corollary}\label{cor:step}
+For $1<r<n$ under the layer hypothesis of \cref{lem:three},
+\[
+ C(n,r)\ \ge\ 3+\min\{C(n-1,r-1),C(n-1,r)\}.
+\]
+\end{corollary}
+\begin{proof}
+Apply \cref{lem:three,lem:delete} to a minimum-size network. The witness
+sign determines which reduced rank is available; the smaller cost bounds
+both possibilities.
+\end{proof}
+The layer hypothesis matters. The median of three takes three comparators,
+whereas adding three to either two-input extreme cost gives four.
+
+\input{certificate}
+\input{results}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

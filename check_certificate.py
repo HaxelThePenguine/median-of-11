@@ -15,7 +15,7 @@ def require(condition,message):
     if not condition:
         raise ValueError(message)
 
-def check(n,r,budget,data,established):
+def check(n,r,budget,data,established,reference=None,record_node=None,record_expansion=None):
     masks=range(1<<n)
     choices=list(combinations(range(n),2))
     allowed={}
@@ -26,6 +26,7 @@ def check(n,r,budget,data,established):
     start=tuple(frozenset(x for x in masks if x.bit_count()==weight)
                 for weight in (n-r,n-r+1))
     memo={}
+    sources={} if reference is not None else None
     codes=iter(data)
     visited=0
 
@@ -44,9 +45,11 @@ def check(n,r,budget,data,established):
     def perm_table(order):
         return tuple(sum(((x>>i)&1)<<dst for dst,i in enumerate(order)) for x in masks)
 
-    def key_for(layers):
+    def order_for(layers):
         a,b=map(columns,layers)
-        order=tuple(sorted(range(n),key=lambda i:(a[i],b[i])))
+        return tuple(sorted(range(n),key=lambda i:(a[i],b[i])))
+
+    def key_for(layers, order):
         perm=perm_table(order)
         return tuple(frozenset(perm[x] for x in layer) for layer in layers)
 
@@ -55,11 +58,14 @@ def check(n,r,budget,data,established):
         a,b=1<<i,1<<j
         return frozenset(x^a^b if x&a and not x&b else x for x in layer)
 
-    def visit(layers,trace,k):
+    def visit(layers,trace,k,path=()):
         nonlocal visited
+        offset=visited
         visited+=1
         code=next(codes,None)
         require(code in (0,1,2,3),"invalid or missing proof node")
+        if record_node is not None:
+            record_node(offset,code,layers,trace,k,path)
         # Directly check whether a wire already realises the threshold.
         varying=variations(layers[0])|variations(layers[1])
         u,v=map(next,map(iter,layers))
@@ -71,22 +77,41 @@ def check(n,r,budget,data,established):
             require(any(d==allowed[sign] and varying&(1<<wire)
                         for sign in [0,1] for wire,d in trace[sign]),"invalid frozen wire")
             return
-        key=key_for(layers)
+        order=order_for(layers)
+        key=key_for(layers,order)
         if code==2:
             require(memo.get(key,-1)>=k,"unproven reference")
+            if reference is not None:
+                old_offset,old_order=sources[key]
+                reference(offset,old_offset,order,old_order)
             return
         require(k>0,"invalid expansion at zero remaining budget")
+        edges=[] if record_expansion is not None else None
         for i,j in choices:
             # An unconditional exchange, like an identity, is only a wire
             # renaming on these layers. Check this in both directions.
             touched=[((x>>i)&1,(x>>j)&1) for layer in layers for x in layer]
             if (1,0) not in touched or (0,1) not in touched:
+                if edges is not None:
+                    edges.append(("redundant",))
                 continue
             new_trace=tuple(tuple(((i if sign==0 else j),d+1) if w in (i,j) else (w,d)
                                   for w,d in trace[sign]) for sign in [0,1])
             if any(any(d>allowed[sign] for _,d in new_trace[sign]) for sign in [0,1]):
+                if edges is not None:
+                    sign,origin=next((sign,origin)
+                        for sign in [0,1] for origin,(_,d) in enumerate(new_trace[sign])
+                        if d>allowed[sign])
+                    edges.append(("path",origin,sign))
                 continue
-            visit(tuple(transform(layer,i,j) for layer in layers),new_trace,k-1)
+            if edges is not None:
+                edges.append(("node",visited))
+            visit(tuple(transform(layer,i,j) for layer in layers),new_trace,k-1,
+                  path+((i,j),) if record_node is not None else ())
+        if edges is not None:
+            record_expansion(offset,visited,edges)
+        if sources is not None and k>=memo.get(key,-1):
+            sources[key]=offset,order
         memo[key]=max(k,memo.get(key,-1))
 
     initial=tuple((i,0) for i in range(n))

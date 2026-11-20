@@ -65,25 +65,73 @@ The \href{https://github.com/HaxelThePenguine/median-of-11}{project repository}
 includes the proof bytes, implementation and audit record;
 see \texttt{docs/reproducibility.md} and \texttt{docs/certificate.md}.
 
-\section{Scope and limitations}
-The computed objects are lower bounds. The upper bound at eleven has its
-own explicit witness. The argument does not determine optimal depth
-at size 25, adaptive comparison cost, or the cost of circuits that charge
-separately for minimum and maximum. Codish et al.\ use hybrid search and
-SAT for sorting \cite{codish}. Our certificate checks combinatorial
-exclusions directly. The historical SAT runs for the unrestricted
-size-24 instance returned unknown. No SAT unsatisfiability proof or LRAT
-checker \cite{lrat} enters the result.
+\section{Lean formalization}\label{sec:lean}
+In Lean 4.19.0 a network is a list of oriented gates with distinct
+ports of type \texttt{Fin n}. The semantics apply each compare--exchange
+in sequence. Under \texttt{Standard}, the smaller value goes to the
+lower-numbered port. The Boolean rank predicate counts zeros. For
+ordered values, two counts compare each input with the output using
+strict and non-strict comparisons, so the definition handles ties.
 
-The two checkers share a mathematical specification and a proof stream.
-Their agreement detects implementation errors but cannot rule out a common
-mistake in the specification. A Lean 4 development proves the cover and
-constancy implications from fixed-width weight conservation, monotonicity
-of the remaining coordinates and boundary separation. The extreme-path
-argument and certificate replay are justified by the mathematical proofs
-above. Their implementations have not been verified in a proof assistant.
-The repository and this audit were developed with AI assistance; independent
-implementation here describes software independence within the project.
+The kernel checks threshold reduction, boundary-layer constancy, the
+three-encounter lemma, deletion via a moving wire bijection, rank
+duality, and the recursive bound. It also checks the length and
+orientation of Dobbelaere's witness, enumerates all $2^{11}$ Boolean
+inputs, and proves correctness on every decidable total order in
+\texttt{Median11.published\_selects}.
+
+The checker reads the preorder opcode stream with optional reference
+hints derived from the supplied gzip members. It recomputes layers,
+checks cardinality and saturated paths, proves the completeness of
+reduced gate expansion, and checks reference targets against closed
+states using a common wire relabelling. The theorem
+\texttt{verify\_replay\_sound} in namespace \texttt{Median11} turns acceptance into a bound
+given the checked smaller-width bounds required by the trace caps.
+The kernel checks the concrete eleven claims through width six. The
+Python and C++ checkers use the same mathematical rules and replay
+the unannotated archive independently. The executable Lean replay
+checks all 26 claims using the rendered archive and supplies a third
+computational comparison.
+
+The exact conditional theorem
+\texttt{median11\_optimal\_from\_nine} has two hypotheses,
+namely \texttt{Bound 9 4 19} and \texttt{Bound 9 5 19}. The complete
+nine-wire certificate has yet to be accepted in the kernel.
+Python, C++, and the executable Lean replay currently supply
+computational evidence for those hypotheses. The formal proofs here use
+the pinned Lean kernel and its standard foundations
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
+Executable replay generates no proof term. Within the formalized part,
+the generator and reference hints are inputs to the checker.
+
+With Lean 4.19.0 and Python 3.10 or newer on the path, run these commands
+from the repository root:
+\begin{verbatim}
+bash scripts/verify-lean.sh
+bash scripts/evaluate-lean-archive.sh
+\end{verbatim}
+The first checks source-data agreement, rebuilds the Lean project and
+prints transitive axiom dependencies. The second executes the full replay.
+
+\section{Scope and limitations}
+The argument gives an exact size bound. It leaves optimal depth at
+size 25, adaptive comparison cost, and separate min/max cost open.
+Codish et al.\ use hybrid search and SAT for sorting \cite{codish}.
+The historical SAT runs for the unrestricted size-24 instance here
+returned unknown. The proof uses the combinatorial exclusion
+certificate above. Certified SAT replay \cite{lrat} is a separate
+approach.
+
+The verification programs share a specification and an opcode stream,
+so a common modelling error could affect all of them. Independent
+implementation refers to how the replay algorithms were written and
+executed within this project. Generative AI provided substantial
+assistance with mathematical exploration, implementation,
+verification, literature research, and manuscript preparation. This is
+an internally reviewed computer-assisted preprint awaiting external
+human peer review. The witness is reproduced with attribution to
+Bert Dobbelaere. Its source and upstream license are recorded separately
+from the original manuscript's license.
 
 \appendix
 \section{The upper-bound witness}

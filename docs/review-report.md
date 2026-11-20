@@ -1,5 +1,7 @@
 # Adversarial review, 20 November 2026
 
+The historical review of v1.0.0-rc.1 is preserved below. See the [current acceptance review](#adversarial-acceptance-review-for-100-rc3) for the status of v1.0.0-rc.3.
+
 **Verdict: Minor Revision for publication.** The argument establishes size 25 for a fixed network on eleven wires with the minimum on the smaller index and the sixth smallest value on wire 5. The audited manuscript can circulate as a preprint following author approval. A specialist referee should evaluate priority and the significance of this finite case before a journal submission. This is an AI-assisted internal review of the project. No independent human referee has endorsed the result.
 
 ## Findings and dispositions
@@ -48,3 +50,20 @@ The search covered historical selection and median-filter papers, the current co
 Lean checks the general cover and boundary implications given the map hypotheses; it does not verify the complete theorem. The remaining arguments and protocol rely on the mathematical proofs, correct execution of at least one checker, and ordinary compiler/runtime trust. A small-width BFS or mutation campaign alone could not establish the nine-input exclusions. The historical heuristic and SAT logs were inventoried and inspected. Their expensive searches were not rerun and none contribute proof evidence.
 
 For an arXiv preprint the limited claim and reproducible artifact are appropriate. Before journal submission, have an external specialist examine the three-encounter lemma, the cache transfer and historical priority, especially the median-filter and selection literature. For an archive deposit the author should confirm authorship/AI disclosure, choose redistribution terms and cite the immutable version. No DOI or submission is asserted.
+
+## Adversarial acceptance review for 1.0.0-rc.3
+
+The earlier verdict above describes the first audited candidate. The new candidate passes computational replay and formalizes its proof rules. A stable formal verification release remains blocked on concrete kernel acceptance of the nine-input bounds.
+
+| Evidence level | Acceptance |
+|---|---|
+| A · Kernel-checked | Network semantics, binary reduction, boundary constancy, three-comparison extreme path, moving-bijection deletion, recurrence, generic opcode soundness, all witness inputs, and concrete replays through width six. The final statement is conditional. |
+| B · Independent computational checks | Python and C++ accept all 26 claims. The executable Lean checker cross-checks their verdicts. Reverse truth-table search independently recovers sizes at widths two through six. Witness, negative tests, figures and regeneration are covered by the verification script. |
+| C · Mathematical arguments outside the checked claim | Applying the formalized recurrence to the principal nine-wire exclusions relies on computer-assisted evidence. The correspondence of on-disk gzip framing and the rendered input is checked by tools outside the kernel. |
+| D · Historical originality | The search located no prior proof of the eleven-input result. Published precedents in structure, construction and nine-wire bounds are cited. Independent human confirmation is pending. |
+
+- **Model audit.** Wire distinctness and index range are intrinsic to the Lean model. The size proof uses the larger oriented model. A certificate prefix is constrained by an explicit root budget and every candidate branch either represents a redundant move, exceeds a proved path cap, or is checked recursively.
+- **Memo counterexample check.** Equal column sums are insufficient. Replay checks that the previous layer rows lie in the current layer images under a single permutation. This direction suffices because separating the larger set also separates its subset. A saved exclusion occurs only after all of the earlier expansion's children close.
+- **Runtime limits.** The largest concrete kernel run was killed during the attempt. The executable Lean run and the Python/C++ replays cannot close the Lean obligation.
+- **Attribution.** The primary Xcell scan gives John L. Smith as its byline. It describes its nine-input circuit as minimal and gives no size-exclusion proof. Dobbelaere's catalogue and its identical SorterHunter source were cross-checked against the 25 pairs. The upstream MIT notice accompanies the attributed data.
+- **Release gate.** Preserve v1.0.0-rc.1 and v1.0.0-rc.2. Create the stable tag after the unconditional theorem, full regression checks and CI pass on the same stable commit. This report is internal and AI-assisted.

@@ -27,10 +27,12 @@ Toolchain observed locally was Python 3.12.14, GCC/G++ 14.2.0, Lean 4.19.0 commi
 
 ## Attempted kernel checks of the principal claims
 
-A direct `decide +kernel` attempt for the 167,917-node replay at width nine and rank four ended with exit 137 after 60.587 s. The analogous baseline attempt for rank five ended with exit 137 after 37.766 s. Retrying rank five with packed row sets and a 6,000,000 KiB process limit produced `INTERNAL PANIC: out of memory`, exit 1 after 30.357 s. These are resource failures in the trial environment. Both claims were accepted by the executable Lean replay and the two independent readers.
+A direct `decide +kernel` attempt for the 167,917-node replay at width nine and rank four ended with exit 137 after 60.587 s. The analogous baseline attempt for rank five ended with exit 137 after 37.766 s. Retrying rank five with packed row sets and a 6,000,000 KiB process limit produced `INTERNAL PANIC: out of memory`, exit 1 after 30.357 s. These are resource failures in the trial environment. The packed rank-four retry also ran out of memory at the same process limit, exiting 1 after 32.270 s. Both claims were accepted by the executable Lean replay and the two independent readers.
 
 Reproduce the isolated attempts with `formal/Replay9Rank4.lean` and `formal/Replay9Rank5.lean` after generating the complete Lean input. The first 11 archive claims and the upper-bound witness are part of the successful default Lake build. The pinned Linux Lean archive SHA-256 is in `verification/lean/toolchain.sha256`.
 
 ## GitHub Actions
 
 The workflow runs computational replay, a fresh manuscript and summary build, and the formal build with an executable Lean cross-check. Check the workflow on the exact candidate commit through the [PR checks](https://github.com/HaxelThePenguine/median-of-11/pull/1/checks). These jobs certify the scope recorded in the [formal verification report](formal-verification.md).
+
+The initial rc.3 workflow detected a 2.49 pt overfull proof line with the Ubuntu runner’s TeX distribution. The proof opening was reflowed and the committed PDF was rebuilt. The mathematical argument and all proof sources remained the same.

@@ -101,11 +101,12 @@ The ZIP contains the tracked files at that commit, including source, certificate
 
 With the Z3 shared library available, `python3 verification/tests/history.py` reconstructs archived job labels, checks the saved global SMT formula byte for byte, evaluates stored positive witnesses and checks annealing scores. We ran it successfully. The 94 small-window UNSAT entries, 2 wide-window UNSAT entries, 30 wide-window unknowns, 206 exact local exclusions and 4,048 repair exclusions are archival solver outcomes. We did not rerun those solvers. The unrestricted SAT attempts both ended unknown. None of these historical outcomes is used by the certificate.
 
-## Current candidate
+## Current artifact
 
-The sections above preserve the 1.0.0-rc.1 audit record. For 1.0.0-rc.3 use
-[the current execution record](rc3-validation.md) and the
-[Lean verification report](formal-verification.md).
+The sections above preserve the 1.0.0-rc.1 audit record. The
+[1.0.0-rc.3 execution record](rc3-validation.md) describes the earlier
+kernel resource limit. The [Lean verification report](formal-verification.md)
+describes the full-archive build in 1.0.1.
 
 ```sh
 bash scripts/verify.sh
@@ -113,4 +114,22 @@ bash scripts/verify-lean.sh
 bash scripts/evaluate-lean-archive.sh
 bash scripts/build-paper.sh
 bash scripts/archive.sh /tmp/median-review
+```
+
+### Local verification of 1.0.1
+
+On 20 November 2026, Lake built the full decoded archive on Windows x86-64
+(build 26200) with Lean 4.19.0 at `6caaee842e94` and Python 3.13.15.
+The observed build-log interval was 692 seconds and Lake exited 0.
+The subsequent `lake env lean -t=0 Audit.lean` and manifest-based axiom
+check took 5.13 seconds and exited 0. The audit included all 26 exclusions
+and the final theorem. The certificate and witness SHA-256 checks passed.
+
+The paper and one-page summary compiled in Debian 12.15 under WSL with
+TeX Live 2022, pdfTeX 1.40.24 and latexmk 4.79. The final build took
+11.98 seconds and exited 0. The checked PDF hashes are:
+
+```text
+1293d1b8032de5ff67c89782f907c7776a6861886af02196d9dbd0283c229885  paper/main.pdf
+e05cbb58876e24a17ee217ab5e668a87f2c7edc8512daafea84930dee6f9faa8  review/summary.pdf
 ```

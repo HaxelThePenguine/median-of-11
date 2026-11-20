@@ -1,6 +1,22 @@
 # Adversarial review, 20 November 2026
 
-The historical review of v1.0.0-rc.1 is preserved below. See the [current acceptance review](#adversarial-acceptance-review-for-100-rc3) for the status of v1.0.0-rc.3.
+## Adversarial acceptance review for 1.0.1
+
+The exact-size result and all 26 decoded archive claims are formally verified in Lean 4.19.0. The artifact is ready for external mathematical review. This internal, AI-assisted assessment leaves historical priority and independent human acceptance open.
+
+The strongest model objection would be that extending or reducing a network changes the problem. Lean's `Bound` ranges over finite sequences of oriented gates, permits repeated pairs and arbitrary length, and quantifies over every fixed output wire. The theorem in the manuscript restricts the witness to the standard orientation and wire 5. The lower bound on the Boolean cube applies to any network required to select on arbitrary ordered inputs. The witness correctness over decidable total orders follows from the independently formalized threshold reduction.
+
+A second objection would be applying the three-encounter bound where the support of the first reused wire cannot vary on the chosen layer. The Lean theorem requires at least four ones and four zeros in a boundary layer. The recurrence applies only at the permitted interior ranks. The median of three fails the balance condition. The deletion invariant tracks the sentinel wire and the bijection on its complement after every gate. Rank decreases by one when the deleted sentinel is a minimum and the target survives. The final reduced output is a fixed wire under this bijection.
+
+For replay, a completed exclusion quantifies over suffixes and budgets on the residual layers. If a reference is accepted, it has the required budget, a closed earlier interval and an inclusion for each layer under the same permutation. An alleged suffix would transfer to the earlier state, with the earlier path history used in its own exclusion. All nonempty completion candidates are covered by the gate-expansion lemma, which handles the omitted orientation and gates acting as fixed permutations. The two larger direct replays give additional checked derivations of the numerical lower bounds and share the smaller-width results used in the recurrence.
+
+The manuscript gives the mathematical argument. Lean checks that argument, the witness and the deductions on the decoded proof data. Python and C++ independently check the original byte streams. Archive hashing, gzip framing and the generator's transcription are checked computationally outside the kernel. The theorem bodies report only the standard Lean axioms. The verified claim does not include optimal depth, novelty, or the correctness of the source-to-PDF toolchain. See the [formal verification report](formal-verification.md).
+
+Smith's primary-source byline is John L. Smith. His 1996 figure calls its nine-wire network minimal and gives no exclusion derivation. The catalogue fixes the attribution of the actual 25 comparators used here. Published antecedents for the output partition, deletion and finite certification warrant separate attribution. The project claims the eleven-input exclusion established in this artifact. It leaves historical priority open. [Smith's published figure](https://bitsavers.trailing-edge.com/components/xilinx/xcell/Xcell23.pdf#page=16) · [Dobbelaere's catalogue](https://bertdobbelaere.github.io/median_networks.html#N11L25D11) · [Afshani et al.](https://arxiv.org/abs/1901.02857v2) · [Harder](https://arxiv.org/abs/2012.04400) · [Tomar](https://www.mefyi.com/papers/selection-networks-three-four-largest/) · [Generalised Superintelligence](https://generalised.si/research/moore-bound-defect-two)
+
+## Historical review of 1.0.0-rc.1
+
+The historical review of v1.0.0-rc.1 is preserved below. The [rc.3 acceptance review](#adversarial-acceptance-review-for-100-rc3) records the later release-candidate status.
 
 **Verdict: Minor Revision for publication.** The argument establishes size 25 for a fixed network on eleven wires with the minimum on the smaller index and the sixth smallest value on wire 5. The audited manuscript can circulate as a preprint following author approval. A specialist referee should evaluate priority and the significance of this finite case before a journal submission. This is an AI-assisted internal review of the project. No independent human referee has endorsed the result.
 

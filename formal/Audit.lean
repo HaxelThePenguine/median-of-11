@@ -26,8 +26,14 @@ import Median11
 #print axioms Median11.bound_8_3
 #print axioms Median11.bound_8_4
 #print axioms Median11.bound_8_5
+#print axioms Median11.bound_9_1
+#print axioms Median11.bound_9_2
+#print axioms Median11.bound_9_3
 #print axioms Median11.bound_9_4
 #print axioms Median11.bound_9_5
+#print axioms Median11.bound_10_5
+#print axioms Median11.bound_10_6
+#print axioms Median11.bound_11_6
 #print axioms Median11.published_size
 #print axioms Median11.published_standard
 #print axioms Median11.published_binary

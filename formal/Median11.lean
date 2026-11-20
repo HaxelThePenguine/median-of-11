@@ -13,3 +13,6 @@ import Median11.Pruning
 import Median11.Expansion
 import Median11.ConcreteSmall
 import Median11.Optimality
+import Median11.KernelData.Rank9_2.Result
+import Median11.KernelData.Rank9_3.Result
+import Median11.KernelData.Rank11_6.Result

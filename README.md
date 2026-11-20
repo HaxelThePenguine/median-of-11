@@ -63,3 +63,19 @@ Three points matter when auditing the checker. A frozen wire may be discarded on
 ## Attribution
 
 The 25-comparator construction is listed by Bert Dobbelaere. A November 2026 report gives the relevant nine-input selection bounds. The repository supplies its own finite checks for those bounds. [Dobbelaere’s median networks](https://bertdobbelaere.github.io/median_networks.html) · [Nine-input results](https://generalised.si/research/moore-bound-defect-two)
+
+## Licensing
+
+Original software, verification tools,
+Lean formalization and certificates:
+MIT License (LICENSE).
+
+Original manuscript, LaTeX source
+and figures: CC BY 4.0
+(LICENSE-PAPER.md).
+
+Third-party material is excluded
+from these grants where applicable.
+The 25-comparator construction is
+attributed to Bert Dobbelaere.
+

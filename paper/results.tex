@@ -65,7 +65,7 @@ The \href{https://github.com/HaxelThePenguine/median-of-11}{project repository}
 includes the proof bytes, implementation and audit record;
 see \texttt{docs/reproducibility.md} and \texttt{docs/certificate.md}.
 
-\section{Lean formalization}\label{sec:lean}
+\section{Formal Verification in Lean 4}\label{sec:lean}
 In Lean 4.19.0 a network is a list of oriented gates with distinct
 ports of type \texttt{Fin n}. The semantics apply each compare--exchange
 in sequence. Under \texttt{Standard}, the smaller value goes to the
@@ -80,29 +80,32 @@ orientation of Dobbelaere's witness, enumerates all $2^{11}$ Boolean
 inputs, and proves correctness on every decidable total order in
 \texttt{Median11.published\_selects}.
 
-The checker reads the preorder opcode stream with optional reference
-hints derived from the supplied gzip members. It recomputes layers,
-checks cardinality and saturated paths, proves the completeness of
-reduced gate expansion, and checks reference targets against closed
-states using a common wire relabelling. The theorem
-\texttt{verify\_replay\_sound} in namespace \texttt{Median11} turns acceptance into a bound
-given the checked smaller-width bounds required by the trace caps.
-The kernel checks the concrete eleven claims through width six. The
-Python and C++ checkers use the same mathematical rules and replay
-the unannotated archive independently. The executable Lean replay
-checks all 26 claims using the rendered archive and supplies a third
-computational comparison.
+The kernel verifies the decoded proof data for all 26 exclusions in
+\cref{tab:counts}. The list-based checker reduces the smaller preorder
+replays directly. The packed checker uses natural-number bit masks for
+sets of rows, with a proved correspondence to the list semantics. It
+validates each expansion, including its gate images, pruning conditions,
+and consumed interval. A memo reference checks the closed interval,
+remaining budget and layer inclusion under one common wire permutation.
+It can reuse an exclusion from an earlier prefix because that exclusion
+quantifies over suffixes on the residual layers. The 167\,917-node
+replay for $(9,4)$ is composed from 659 kernel-checked blocks.
 
-The exact conditional theorem
-\texttt{median11\_optimal\_from\_nine} has two hypotheses,
-namely \texttt{Bound 9 4 19} and \texttt{Bound 9 5 19}. The complete
-nine-wire certificate has yet to be accepted in the kernel.
-Python, C++, and the executable Lean replay currently supply
-computational evidence for those hypotheses. The formal proofs here use
-the pinned Lean kernel and its standard foundations
+\texttt{Median11.median11\_optimal} proves the fixed-wire exact-size
+result without certificate premises. Its lower bound follows from
+the two verified nine-wire exclusions and the deletion recurrence.
+The archived eleven-wire exclusion gives a second checked derivation
+of the numerical lower bound, using the same smaller-width bounds.
+The three axiom dependencies reported for the exact-size theorem are
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
-Executable replay generates no proof term. Within the formalized part,
-the generator and reference hints are inputs to the checker.
+The Lean project uses core and Std.
+
+Archive integrity and the translation from gzip bytes to Lean data
+are checked outside Lean. The input generator preserves the opcodes
+and proposes hints, including wire permutations and states at block
+boundaries. The kernel checks the deductions those hints describe.
+Python and C++ independently replay the unannotated archive. The
+executable Lean replay provides another computational comparison.
 
 With Lean 4.19.0 and Python 3.10 or newer on the path, run these commands
 from the repository root:
@@ -111,7 +114,7 @@ bash scripts/verify-lean.sh
 bash scripts/evaluate-lean-archive.sh
 \end{verbatim}
 The first checks source-data agreement, rebuilds the Lean project and
-prints transitive axiom dependencies. The second executes the full replay.
+audits transitive axiom dependencies. The second executes the full replay.
 
 \section{Scope and limitations}
 The argument gives an exact size bound. It leaves optimal depth at
@@ -129,7 +132,8 @@ executed within this project. Generative AI provided substantial
 assistance with mathematical exploration, implementation,
 verification, literature research, and manuscript preparation. This is
 an internally reviewed computer-assisted preprint awaiting external
-human peer review. The witness is reproduced with attribution to
+human peer review. The author is responsible for the mathematical claims
+and approval of the manuscript. The witness is reproduced with attribution to
 Bert Dobbelaere. Its source and upstream license are recorded separately
 from the original manuscript's license.
 

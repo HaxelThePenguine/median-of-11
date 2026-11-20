@@ -11,7 +11,7 @@
 \newcommand{\wt}{\operatorname{wt}}
 \title[Optimal median selection on eleven inputs]{Optimality of a 25-Comparator Median Selection Network on Eleven Inputs}
 \author{Rocco Martino}
-\date{20 November 2026, version 1.0.0}
+\date{20 November 2026, version 1.0.1}
 \keywords{Comparator networks, order statistics, size optimality, computer-assisted proof}
 \subjclass[2020]{68P10, 68Q17}
 \begin{document}
@@ -27,8 +27,7 @@ ranks four and five on nine wires, up to duality. A finite exclusion
 certificate establishes both inequalities and their prerequisites. Python
 and C++ checkers replay all 174\,008 nodes of the full certificate,
 including direct exclusions at widths ten and eleven. The Lean kernel
-checks the exact-size theorem, including the two nine-wire exclusions
-and their prerequisites.
+checks the exact-size theorem and replays all 26 archived exclusions.
 \end{abstract}
 \maketitle
 

@@ -93,4 +93,9 @@ def data8_3 : List (ReplayOp 8) := [
   decodeOps 29 0x3fffffffffffffc 0x0
 ].flatten
 
+-- SHA-256 of the uncompressed opcodes: 084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5
+def data9_1 : List (ReplayOp 9) := [
+  decodeOps 1 0x3 0x0
+].flatten
+
 end Median11

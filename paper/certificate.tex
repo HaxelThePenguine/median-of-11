@@ -1,0 +1,102 @@
+\section{Finite lower bounds}\label{sec:finite}
+A claim $(n,r,L)$ excludes every network of size at most $L$ in the enlarged
+model. For a concrete prefix $P$ of length $p$ put
+\[
+ A=P(H_w),\qquad B=P(H_{w+1}),\qquad k=L-p.
+\]
+A \emph{completion} of $(A,B,k)$ is an oriented suffix of length at most
+$k$ with a fixed output zero on all rows of $A$ and one on all rows of $B$.
+By \cref{prop:zero} this is equivalent to completing $P$. The definition
+refers to the two image sets alone.
+
+\paragraph{Local exclusions.}
+Every comparator has at most two preimages of any specified vector.
+Outside the two ports the input is fixed, and inside them there are at
+most two orders of the output pair. A layer with more than $2^k$ distinct
+images cannot become a singleton in $k$ steps, as \cref{lem:rigid} requires.
+
+For each original position and sign trace the route a strict sentinel would
+take in $P$. Let $b$ be a previously proved lower bound for the rank after
+deletion, or zero if none is available. On a valid rank deletion, a full
+completion of total size at most $L$ must have at most $D=L-b$ encounters
+on that path by \cref{lem:delete}. When deletion would remove the selected
+rank itself, use only $D=L$, because each encounter uses one gate.
+If a trace exceeds $D$, the prefix is impossible. If it attains $D$, its
+present wire cannot be touched again. Variation of that wire \emph{within}
+either layer therefore excludes the prefix. A difference solely between
+layers does not suffice.
+
+\paragraph{Enumeration.}
+Try one representative $(i,j)$ with $i<j$ for each unordered pair.
+The opposite orientation differs exactly by swapping the two output
+labels. Conjugate every subsequent oriented gate and rename the terminal
+coordinate by this transposition. This preserves existence and length of
+a suffix. If the two discordant port patterns $10$ and $01$ do not both
+occur in $A\cup B$, the gate acts there as one fixed permutation
+(identity or transposition). Omitting it and conjugating the suffix gives
+the same separation in one fewer step. The permutation need only agree on
+these rows, since separation there implies correctness everywhere. Thus
+a shortest nonempty completion can start with an enumerated pair. If the
+representative violates a path cap, its exclusion rules out its reverse
+as well, by conjugacy of completed networks.
+
+\paragraph{Memoization.}
+Permute both layers together, sorting wire labels stably by the pair of
+column sums in $A,B$. Compare the two resulting \emph{entire} images.
+Equal keys exhibit a specific common permutation. Ties can cause equivalent
+states to have different keys, which only forgoes reuse. If a completed
+exclusion with the same key allowed $k'\ge k$, conjugation transfers any
+putative suffix to that earlier state. Even if the two prefixes have
+different extreme traces, such a suffix appended to the \emph{earlier}
+prefix would contradict its established exclusion at total budget
+$|P_{\mathrm{earlier}}|+k'\le L$. A partial search of the earlier state
+would not justify this inference.
+
+\begin{proposition}[Replay soundness]\label{prop:replay}
+Assume the smaller-width bounds used in replay. If replay accepts
+$(n,r,L)$, then $C(n,r)>L$.
+\end{proposition}
+\begin{proof}
+Associate to each closed node the proposition that its image pair has no
+completion within its remaining budget. Check first that there is no
+separating wire already, excluding the empty suffix. Cardinality and
+frozen-wire leaves establish the proposition by the local exclusions.
+A reference uses only a proposition already closed in the same claim.
+For an expansion, choose a shortest hypothetical suffix. Its first gate
+has a useful representative by the enumeration argument. A path violation
+contradicts deletion; otherwise replay requires and checks the corresponding
+child, whose proposition excludes the rest of the suffix. This proves the
+parent proposition. Induct in order of node \emph{closure}, inserting an
+expanded state only after its last child. The root has the original layers
+and budget $L$. Induction over claims establishes all reported bounds:
+the table is reset for each claim and cross-claim dependencies have
+strictly smaller width.
+\end{proof}
+
+\begin{center}
+\begin{minipage}{0.96\linewidth}\small
+\textbf{Replay of an implicit preorder tree}\\[2pt]
+\texttt{visit}$(P,A,B,k)$: consume one opcode; reject a current separator.\\
+\hspace*{1em}1: verify $\max(|A|,|B|)>2^k$; return.\\
+\hspace*{1em}2: find a closed common-permutation key with budget $\ge k$; return.\\
+\hspace*{1em}3: find a saturated trace on a within-layer varying wire; return.\\
+\hspace*{1em}0: require $k>0$; enumerate $i<j$ in lexicographic order.\\
+\hspace*{2em}Skip fixed permutations and pairs exceeding a trace allowance.\\
+\hspace*{2em}For each remaining $g$, call \texttt{visit}$(Pg,gA,gB,k-1)$.\\
+\hspace*{2em}Record the closed key and budget.\\
+Reject failed predicates, invalid opcodes, missing bytes and trailing nodes.
+\end{minipage}
+\end{center}
+
+\section{The exact size}
+\begin{proof}[Proof of \cref{thm:main}]
+Apply \cref{prop:replay} to $(9,4,18)$ and $(9,5,18)$. Both nine-input
+ranks require at least 19 comparators. Duality gives $C(9,6)\ge19$.
+The layer of weight five has respectively five and six zeros at widths ten
+and eleven. It is a boundary layer for each of $(10,5),(10,6),(11,6)$.
+Applying \cref{cor:step} to the first two gives a lower bound of 22 in
+both cases. Applying it to the third gives 25. This suffices for the
+fixed-wire, lower-index-minimum model. For the opposite inequality, the
+25 comparators in \cref{fig:net} yield the required bit on wire 5 on all
+$2^{11}$ binary inputs by exhaustive evaluation. Apply \cref{prop:zero}.
+\end{proof}

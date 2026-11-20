@@ -4,7 +4,13 @@ How small can a fixed circuit be if it only has to return the middle of eleven n
 
 Each operation on wires `i < j` sends the smaller input to `i` and the larger to `j`. Wire 5 (numbering from zero) must return the sixth smallest input for every totally ordered input tuple, including ties. The objective counts comparators. Depth is unrestricted.
 
-[Read the English research note](PAPER.md) · [Dimostrazione in italiano](PROOF.md)
+[Manuscript (PDF)](paper/main.pdf) · [LaTeX source](paper/main.tex) · [Critical review](docs/review-report.md) · [Reproducibility record](docs/reproducibility.md)
+
+The audited research artifact is version **1.0.0-rc.1**. Two implementations replay all 26 claims. A separate search computes every rank optimum through width six from complete Boolean truth tables. Lean 4 checks the boundary-layer implication. The analytic deletion and full transcript soundness proofs are in Sections 4 and 5 of the manuscript.
+
+Run the full computational audit with `bash scripts/verify.sh` (Python 3.10+, C++20, zlib development headers and standard Linux shell utilities). Build the paper with `cd paper && latexmk -pdf main.tex`. The original verification commands below remain supported.
+
+[Original English research note](PAPER.md) · [Dimostrazione in italiano](PROOF.md) · [Certificate encoding](docs/certificate.md)
 
 ## Verify the result
 

@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "Cite the audited commit and version when using this research artifact."
+title: Optimality of a 25-Comparator Median Selection Network on Eleven Inputs
+type: software
+authors:
+  - family-names: Martino
+    given-names: Rocco
+version: 1.0.0-rc.1
+repository-code: https://github.com/HaxelThePenguine/median-of-11
+keywords:
+  - comparator networks
+  - order statistics
+  - computer-assisted proof

@@ -1,0 +1,674 @@
+{
+  "date": "2026-11-20",
+  "input_commit": "9ae024e5b5ecda05960c6e14d5875f9c099f3c98",
+  "version": "1.0.0-rc.1",
+  "system": "Debian 13 x86_64, AMD EPYC 9V74",
+  "toolchain": {
+    "python": "3.12.14",
+    "gpp": "14.2.0",
+    "python_zlib": "1.3.2",
+    "zlib_header": "1.3.1",
+    "lean": "4.19.0",
+    "pdftex": "1.40.26",
+    "bibtex": "0.99d",
+    "latexmk": "4.86",
+    "git": "2.56.1"
+  },
+  "hashes": {
+    "docs/proof.sha256": "efcffcb42dbcc090951b0601975f8dcf2fa7d3d21096b6d7b50b53f3e83f419d",
+    "bounds.jsonl": "dd4791e251e43aa5f89dea71da2eee2d3c4afa5b363e90160ec6a7f3e2879af8",
+    "check_certificate.py": "44a5d03d5b2cc72af99b001c490528c60ee6615916c9b46e59566a833686e30c",
+    "lower.py": "4ac989f2f613a99003a1edb17f2db1398dd8d7c7c440783a7078e14fa9cd542b",
+    "verify.py": "10ae5148d69e4dd0bc93df666eb7139ab2f2a43ec32e8f1cfaa3937aa33e051a",
+    "verification/independent/check.cpp": "f8a45b3a1745680ff2c6b910c5dd7e7d74d5ca95be4c11ff2c57a7ab4e156345",
+    "verification/tests/backward.cpp": "489b4c8c11701e29f0f8d2e0da5d5508b03c34b4c1050d4149331955a41f4bd6",
+    "verification/lean/Boundary.lean": "4d8d3955da9b683d047bdf9510fb877f3e8da1eff86457707de30d23dac9c531",
+    "paper/main.pdf": "5209c3bc574167e6016defa74fcaaaf1114f39bfc20a3e53c2cd6d69155c488c",
+    "paper/main.bbl": "3150b8e770b7a1f89451627c38511a992cc0080a9e0652e8cdf6ea82c5f962bd"
+  },
+  "claims": [
+    {
+      "n": 2,
+      "rank": 1,
+      "excluded_through": 0,
+      "nodes": 1,
+      "expansions": 0,
+      "cardinality": 1,
+      "completed_references": 0,
+      "frozen": 0,
+      "uncompressed_sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+    },
+    {
+      "n": 3,
+      "rank": 1,
+      "excluded_through": 1,
+      "nodes": 1,
+      "expansions": 0,
+      "cardinality": 1,
+      "completed_references": 0,
+      "frozen": 0,
+      "uncompressed_sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+    },
+    {
+      "n": 3,
+      "rank": 2,
+      "excluded_through": 2,
+      "nodes": 4,
+      "expansions": 1,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 3,
+      "uncompressed_sha256": "9e27c5e07151a25b193049452eed53d86128624661f398113f99a60290919198"
+    },
+    {
+      "n": 4,
+      "rank": 1,
+      "excluded_through": 2,
+      "nodes": 1,
+      "expansions": 0,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 1,
+      "uncompressed_sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+    },
+    {
+      "n": 4,
+      "rank": 2,
+      "excluded_through": 4,
+      "nodes": 7,
+      "expansions": 1,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 6,
+      "uncompressed_sha256": "ed8a5483d4932954040c7714284dea5c52c634f64d7e1dab1039958c87eb416f"
+    },
+    {
+      "n": 5,
+      "rank": 1,
+      "excluded_through": 3,
+      "nodes": 1,
+      "expansions": 0,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 1,
+      "uncompressed_sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+    },
+    {
+      "n": 5,
+      "rank": 2,
+      "excluded_through": 6,
+      "nodes": 11,
+      "expansions": 1,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 10,
+      "uncompressed_sha256": "f072146620b806282baffe8b38fa205fee6b6becb5e6a78359cd033a960dfa18"
+    },
+    {
+      "n": 5,
+      "rank": 3,
+      "excluded_through": 6,
+      "nodes": 11,
+      "expansions": 1,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 10,
+      "uncompressed_sha256": "f072146620b806282baffe8b38fa205fee6b6becb5e6a78359cd033a960dfa18"
+    },
+    {
+      "n": 6,
+      "rank": 1,
+      "excluded_through": 4,
+      "nodes": 1,
+      "expansions": 0,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 1,
+      "uncompressed_sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+    },
+    {
+      "n": 6,
+      "rank": 2,
+      "excluded_through": 8,
+      "nodes": 16,
+      "expansions": 1,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 15,
+      "uncompressed_sha256": "b66dced8d3d48061c731043376bc00cbd3ea8c75e6ef23b2500945caaa902b35"
+    },
+    {
+      "n": 6,
+      "rank": 3,
+      "excluded_through": 9,
+      "nodes": 89,
+      "expansions": 8,
+      "cardinality": 0,
+      "completed_references": 24,
+      "frozen": 57,
+      "uncompressed_sha256": "41118231f93f03e7ef4de586613c43976b47dd859b7265749bd2981b2487e809"
+    },
+    {
+      "n": 7,
+      "rank": 1,
+      "excluded_through": 5,
+      "nodes": 1,
+      "expansions": 0,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 1,
+      "uncompressed_sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+    },
+    {
+      "n": 7,
+      "rank": 2,
+      "excluded_through": 10,
+      "nodes": 22,
+      "expansions": 1,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 21,
+      "uncompressed_sha256": "b254654ddf5339efd8f44a0d24c7a7e453527a90238e1f5f4be05814ddab6abb"
+    },
+    {
+      "n": 7,
+      "rank": 3,
+      "excluded_through": 11,
+      "nodes": 22,
+      "expansions": 1,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 21,
+      "uncompressed_sha256": "b254654ddf5339efd8f44a0d24c7a7e453527a90238e1f5f4be05814ddab6abb"
+    },
+    {
+      "n": 7,
+      "rank": 4,
+      "excluded_through": 12,
+      "nodes": 79,
+      "expansions": 4,
+      "cardinality": 0,
+      "completed_references": 31,
+      "frozen": 44,
+      "uncompressed_sha256": "d424bd397d66fd9dfe7c7eeac520ec4738685a9dbe0a823c5458ec824f4fe6e5"
+    },
+    {
+      "n": 8,
+      "rank": 1,
+      "excluded_through": 6,
+      "nodes": 1,
+      "expansions": 0,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 1,
+      "uncompressed_sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+    },
+    {
+      "n": 8,
+      "rank": 2,
+      "excluded_through": 12,
+      "nodes": 29,
+      "expansions": 1,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 28,
+      "uncompressed_sha256": "d7a68a2a619246bfb9d510b4253b1ba4dced951ea2ea0ea48505828c41fca10e"
+    },
+    {
+      "n": 8,
+      "rank": 3,
+      "excluded_through": 13,
+      "nodes": 29,
+      "expansions": 1,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 28,
+      "uncompressed_sha256": "d7a68a2a619246bfb9d510b4253b1ba4dced951ea2ea0ea48505828c41fca10e"
+    },
+    {
+      "n": 8,
+      "rank": 4,
+      "excluded_through": 15,
+      "nodes": 4947,
+      "expansions": 396,
+      "cardinality": 293,
+      "completed_references": 1142,
+      "frozen": 3116,
+      "uncompressed_sha256": "09927b552f7c12ed0c12a9bebba3d35650c122cab10a4c8fefea4cc602a10155"
+    },
+    {
+      "n": 9,
+      "rank": 1,
+      "excluded_through": 7,
+      "nodes": 1,
+      "expansions": 0,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 1,
+      "uncompressed_sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+    },
+    {
+      "n": 9,
+      "rank": 2,
+      "excluded_through": 14,
+      "nodes": 37,
+      "expansions": 1,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 36,
+      "uncompressed_sha256": "6c785db9ba314682149c6bdf96d1a0c984f0b403e71e4f274bb5bd93ab6f44cb"
+    },
+    {
+      "n": 9,
+      "rank": 3,
+      "excluded_through": 15,
+      "nodes": 37,
+      "expansions": 1,
+      "cardinality": 0,
+      "completed_references": 0,
+      "frozen": 36,
+      "uncompressed_sha256": "6c785db9ba314682149c6bdf96d1a0c984f0b403e71e4f274bb5bd93ab6f44cb"
+    },
+    {
+      "n": 9,
+      "rank": 4,
+      "excluded_through": 18,
+      "nodes": 167917,
+      "expansions": 10529,
+      "cardinality": 10199,
+      "completed_references": 58965,
+      "frozen": 88224,
+      "uncompressed_sha256": "0923a7b98454cfda233808ea806f5896233c339f2c07482a52135ac21b097976"
+    },
+    {
+      "n": 9,
+      "rank": 5,
+      "excluded_through": 18,
+      "nodes": 171,
+      "expansions": 5,
+      "cardinality": 0,
+      "completed_references": 66,
+      "frozen": 100,
+      "uncompressed_sha256": "f73d5489d9d142a463dae68d3decf0ba4e7731f5def4bc227f6e00472ffed2ee"
+    },
+    {
+      "n": 10,
+      "rank": 5,
+      "excluded_through": 21,
+      "nodes": 256,
+      "expansions": 6,
+      "cardinality": 0,
+      "completed_references": 90,
+      "frozen": 160,
+      "uncompressed_sha256": "89dea2e38b652c7a3b4bdf487fa4bafba47d44c5dad551d91d1b99d781583b8c"
+    },
+    {
+      "n": 11,
+      "rank": 6,
+      "excluded_through": 24,
+      "nodes": 316,
+      "expansions": 6,
+      "cardinality": 0,
+      "completed_references": 120,
+      "frozen": 190,
+      "uncompressed_sha256": "fe2d04d3312679d40fe7522ceeab4c55fe7218349c67e0543cd00fde1080e54c"
+    }
+  ],
+  "runs": {
+    "upper": {
+      "command": [
+        "python3",
+        "verify.py",
+        "median11_25.json"
+      ],
+      "elapsed_seconds": 0.029,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "689329ade56c46ebb74f68edf473839e70657ccf26069f5644f26dad79a0ccb5",
+      "cwd": ".",
+      "output": "n=11 size=25 errors=0/2048 first=[]"
+    },
+    "seeds": {
+      "command": [
+        "python3",
+        "verify.py"
+      ],
+      "elapsed_seconds": 0.03,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "2b395a0f5c0e480af45656f55ac22712f36eb3108a0118f97cd94b2178afb673",
+      "cwd": ".",
+      "output": "n=9 size=19 errors=0/512 first=[]\nn=11 size=25 errors=0/2048 first=[]\nn=11 size=26 errors=0/2048 first=[]"
+    },
+    "witness": {
+      "command": [
+        "python3",
+        "verification/tests/witness.py"
+      ],
+      "elapsed_seconds": 0.417,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "2bcd2fd19849a962c338a14a2569e73a2690d9296d8db5017e4f18152a1f9f31",
+      "cwd": ".",
+      "output": "Binary masks: 2048 correct. Failing mask counts by single-gate deletion: [24, 24, 24, 24, 56, 38, 38, 38, 38, 56, 56, 21, 165, 21, 173, 100, 100, 121, 126, 65, 121, 168, 84, 294, 490]\nTernary tuples: 177147 correct."
+    },
+    "py": {
+      "command": [
+        "python3",
+        "-O",
+        "check_certificate.py"
+      ],
+      "elapsed_seconds": 5.411,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "826807b1ac6239b330121a92bcdd731a38c4bcfa7449e5c92fce92d7868973a4",
+      "cwd": "."
+    },
+    "build": {
+      "command": [
+        "g++",
+        "-std=c++20",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "verification/independent/check.cpp",
+        "-lz",
+        "-o",
+        "/tmp/median-audit/check"
+      ],
+      "elapsed_seconds": 2.429,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cwd": ".",
+      "output": ""
+    },
+    "cpp": {
+      "command": [
+        "/tmp/median-audit/check",
+        "certificate"
+      ],
+      "elapsed_seconds": 0.166,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "826807b1ac6239b330121a92bcdd731a38c4bcfa7449e5c92fce92d7868973a4",
+      "cwd": "."
+    },
+    "regen": {
+      "command": [
+        "python3",
+        "lower.py",
+        "--output",
+        "/tmp/median-audit/rebuilt"
+      ],
+      "elapsed_seconds": 1.063,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "dd4791e251e43aa5f89dea71da2eee2d3c4afa5b363e90160ec6a7f3e2879af8",
+      "cwd": "."
+    },
+    "compare": {
+      "command": [
+        "diff",
+        "-qr",
+        "certificate",
+        "/tmp/median-audit/rebuilt"
+      ],
+      "elapsed_seconds": 0.002,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cwd": ".",
+      "output": ""
+    },
+    "stats": {
+      "command": [
+        "diff",
+        "-u",
+        "bounds.jsonl",
+        "/tmp/median-audit/regen.log"
+      ],
+      "elapsed_seconds": 0.001,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cwd": ".",
+      "output": ""
+    },
+    "repy": {
+      "command": [
+        "python3",
+        "-O",
+        "check_certificate.py",
+        "/tmp/median-audit/rebuilt"
+      ],
+      "elapsed_seconds": 5.93,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "826807b1ac6239b330121a92bcdd731a38c4bcfa7449e5c92fce92d7868973a4",
+      "cwd": "."
+    },
+    "recpp": {
+      "command": [
+        "/tmp/median-audit/check",
+        "/tmp/median-audit/rebuilt"
+      ],
+      "elapsed_seconds": 0.19,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "826807b1ac6239b330121a92bcdd731a38c4bcfa7449e5c92fce92d7868973a4",
+      "cwd": "."
+    },
+    "logcmp": {
+      "command": [
+        "diff",
+        "-u",
+        "/tmp/median-audit/cpp.log",
+        "/tmp/median-audit/py.log"
+      ],
+      "elapsed_seconds": 0.001,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cwd": ".",
+      "output": ""
+    },
+    "small": {
+      "command": [
+        "python3",
+        "audit_small.py"
+      ],
+      "elapsed_seconds": 0.037,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "cb00c81a6401ea04094170c1fddb057411c3a6edd5d2d8d01499e9a98a8e8d4a",
+      "cwd": ".",
+      "output": "n=2, rank=1, BFS optimum=1\nn=3, rank=1, BFS optimum=2\nn=3, rank=2, BFS optimum=3\nn=4, rank=1, BFS optimum=3\nn=4, rank=2, BFS optimum=5\nn=5, rank=1, BFS optimum=4\nn=5, rank=2, BFS optimum=7\nn=5, rank=3, BFS optimum=7\n720 distinct-value cases passed"
+    },
+    "bfsbuild": {
+      "command": [
+        "g++",
+        "-std=c++20",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "verification/tests/backward.cpp",
+        "-o",
+        "/tmp/median-audit/backward"
+      ],
+      "elapsed_seconds": 0.89,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cwd": ".",
+      "output": ""
+    },
+    "bfs": {
+      "command": [
+        "/tmp/median-audit/backward"
+      ],
+      "elapsed_seconds": 0.518,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "106f32b3dc1f1331e2d161a5c3317bf8d88e42ab37fa718880eee49000def42b",
+      "cwd": ".",
+      "output": "2 1 1\n2 2 1\n3 1 2\n3 2 3\n3 3 2\n4 1 3\n4 2 5\n4 3 5\n4 4 3\n5 1 4\n5 2 7\n5 3 7\n5 4 7\n5 5 4\n6 1 5\n6 2 9\n6 3 10\n6 4 10\n6 5 9\n6 6 5"
+    },
+    "damage": {
+      "command": [
+        "python3",
+        "corruption.py"
+      ],
+      "elapsed_seconds": 0.357,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "e59123602e96261b312f5284404bbf79f317a3ef48a78c7b39783dcaec4873ef",
+      "cwd": ".",
+      "output": "REJECT false cache reference unproven reference\nREJECT truncation invalid or missing proof node\nREJECT 24-gate truncated baseline, failing masks: 490"
+    },
+    "deletion": {
+      "command": [
+        "python3",
+        "verification/tests/structure.py"
+      ],
+      "elapsed_seconds": 0.426,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "1f8c3b96c936b5393126cbd3a951a494a55dec97c0e07abffef1f55e09a7ba66",
+      "cwd": ".",
+      "output": "407160 full-vector deletion comparisons passed"
+    },
+    "mutations": {
+      "command": [
+        "python3",
+        "verification/tests/mutations.py",
+        "/tmp/median-audit/check"
+      ],
+      "elapsed_seconds": 3.728,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "86b2b492fb42333ddb62d59f0d3050038e45f813633f2a08c5ea377a95ece244",
+      "cwd": "."
+    },
+    "oldprofile": {
+      "command": [
+        "python3",
+        "-O",
+        "check_certificate.py",
+        "/tmp/median-audit/python-profile"
+      ],
+      "elapsed_seconds": 6.043,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "f90b66fca4bcae914ae7c43e65569c36542abb6731797433b415d816e8369f91",
+      "cwd": "."
+    },
+    "asbuild": {
+      "command": [
+        "g++",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "verification/independent/check.cpp",
+        "-lz",
+        "-o",
+        "/tmp/median-audit/check-san"
+      ],
+      "elapsed_seconds": 4.986,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cwd": ".",
+      "output": ""
+    },
+    "sanitizer": {
+      "command": [
+        "/tmp/median-audit/check-san",
+        "certificate"
+      ],
+      "elapsed_seconds": 2.015,
+      "exit": 1,
+      "stdout_and_stderr_sha256": "610799dc65fa45c9f0d3012f675dbffd7dc3f6f02c03a489c6f73046744f1e69",
+      "cwd": "."
+    },
+    "san_noleak": {
+      "command": [
+        "env",
+        "ASAN_OPTIONS=detect_leaks=0",
+        "UBSAN_OPTIONS=halt_on_error=1",
+        "/tmp/median-audit/check-san",
+        "certificate"
+      ],
+      "elapsed_seconds": 2.729,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "826807b1ac6239b330121a92bcdd731a38c4bcfa7449e5c92fce92d7868973a4",
+      "cwd": "."
+    },
+    "lean": {
+      "command": [
+        "/tmp/median-audit/lean-4.19.0-linux/bin/lean",
+        "verification/lean/Boundary.lean"
+      ],
+      "elapsed_seconds": 0.859,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "b21f0e96012d1958f0744c63bcd27c2d03dcb182544db2935242a4cf227d03c4",
+      "cwd": ".",
+      "output": "'Boundary.rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Boundary.edge' depends on axioms: [propext, Classical.choice, Quot.sound]"
+    },
+    "history": {
+      "command": [
+        "python3",
+        "verification/tests/history.py"
+      ],
+      "elapsed_seconds": 0.266,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "a424c2772622fc701d23c2d455399ec78b6fa9f80bb0465e872e2aedc6a54063",
+      "cwd": ".",
+      "output": "annealing 25 endpoint failures [115, 693, 709, 1338, 1354, 1675]\nannealing 26 endpoint failures [283, 718, 880, 1182, 1428, 1748]\ncontrol {'verified': 2}\nsmall {'unsat': 94}\nwide {'unknown': 30, 'unsat': 2}\nglobal {'unknown': 1}\nglobal_full unknown 924 boundary masks\nexact {'SAT': 2, 'UNSAT': 206}\nrepair {'UNSAT': 4048}"
+    },
+    "finalfull": {
+      "command": [
+        "bash",
+        "scripts/verify.sh"
+      ],
+      "elapsed_seconds": 15.741,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "b6bfdb0e0976c899947bcc082217c419b1dcae9d23a9c65c528f8d8a2a274b2c",
+      "cwd": "."
+    },
+    "paper": {
+      "command": [
+        "latexmk",
+        "-pdf",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "main.tex"
+      ],
+      "elapsed_seconds": 3.344,
+      "exit": 12,
+      "stdout_and_stderr_sha256": "25c6b2ec44b73b80fed8f00cb92e129b8bf82294a3830626de756adf2ee380c6",
+      "cwd": "paper"
+    },
+    "pdf_fixed": {
+      "command": [
+        "env",
+        "SOURCE_DATE_EPOCH=1795132800",
+        "FORCE_SOURCE_DATE=1",
+        "TZ=UTC",
+        "latexmk",
+        "-g",
+        "-pdf",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "main.tex"
+      ],
+      "elapsed_seconds": 2.751,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "09ecfbc856e9b51df7621a813782508d9588ebd4786b1d26d21b046bfb7efafd",
+      "cwd": "paper"
+    },
+    "pdf_repeat": {
+      "command": [
+        "env",
+        "SOURCE_DATE_EPOCH=1795132800",
+        "FORCE_SOURCE_DATE=1",
+        "TZ=UTC",
+        "latexmk",
+        "-g",
+        "-pdf",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "main.tex"
+      ],
+      "elapsed_seconds": 2.685,
+      "exit": 0,
+      "stdout_and_stderr_sha256": "09ecfbc856e9b51df7621a813782508d9588ebd4786b1d26d21b046bfb7efafd",
+      "cwd": "paper"
+    }
+  }
+}

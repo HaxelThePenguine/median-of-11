@@ -1,8 +1,8 @@
 # Optimality of a 25-Comparator Median Selection Network on Eleven Inputs
 
-A computer-assisted proof gives a matching lower bound for Bert Dobbelaere's published 25-comparator construction. The network is a fixed sequence of compare–exchange operations. Each pair `i < j` places the smaller value on wire `i` and the larger on wire `j`. Wire 5, numbered from zero, returns the sixth smallest input, including ties. The size bound allows arbitrary depth.
+Exactly **25 comparators** are necessary and sufficient to select the sixth smallest of eleven inputs on wire 5, numbered from zero. The standard model uses a fixed sequence of compare–exchange operations, with each pair `i < j` sending the smaller value to wire `i`. The result allows arbitrary depth and includes inputs with ties. Bert Dobbelaere published the 25-comparator construction.
 
-**Artifact version 1.0.1.** Lean 4.19.0 checks the exact-size theorem `Median11.median11_optimal` without certificate hypotheses. The kernel verifies the upper-bound witness, the reduction, and the decoded proof data for all 26 archived exclusions. Python, C++ and the Lean executable checker replay the complete computational certificate with matching results.
+**Artifact version 1.0.1.** Lean 4.19.0 proves `Median11.median11_optimal` using the verified witness and lower bounds. The kernel checks the decoded proof data for all 26 archived exclusions, comprising 174,008 nodes.
 
 | Entry point | Start here |
 |---|---|
@@ -14,17 +14,29 @@ A computer-assisted proof gives a matching lower bound for Bert Dobbelaere's pub
 | Review the result | [One-page summary](review/summary.pdf) · [Reviewer guide](review/README.md) · [Adversarial report](docs/review-report.md) |
 | Cite this work | [Citation metadata](CITATION.cff) · [Archive versions](#archived-versions) |
 
-## Reproduce the checks
+## Verify the theorem
 
-On Linux, install Python 3.10+, a C++20 compiler, zlib headers, Lean 4.19.0, and LaTeX with `latexmk`. Run from the repository root.
+From the repository root on Linux, run the kernel check with Python 3.10+ and Lean 4.19.0 (including `lake`) on your path. The repository pins the Lean version in [the toolchain file](formal/lean-toolchain).
+
+```sh
+bash scripts/verify-lean.sh
+```
+
+The script checks the certificate and witness hashes, generates the Lean replay data, runs a clean build, and audits the transitive axioms for every archived exclusion and the final theorem. For `Median11.median11_optimal`, expect `propext`, `Classical.choice` and `Quot.sound`. Lean checks the proof on the decoded data. The host tools check the gzip archive and the translation to Lean input. [Formal verification report](docs/formal-verification.md)
+
+The recorded Windows build took about 12 minutes. [Reproducibility record](docs/reproducibility.md#local-verification-of-101)
+
+## Replay the archive and build the paper
+
+For the independent certificate audit, install a C++20 compiler and zlib headers alongside Python. To rebuild the paper and reviewer summary, install TeX Live with BibTeX and `latexmk`. Run from the repository root.
 
 ```sh
 bash scripts/verify.sh
-bash scripts/verify-lean.sh
-(cd paper && latexmk -pdf main.tex)
+bash scripts/evaluate-lean-archive.sh
+bash scripts/build-paper.sh
 ```
 
-The computational audit checks all 2,048 binary inputs and all 177,147 ternary inputs, then runs two independent implementations of the lower-bound replay and compares their results. Both accept all 26 claims and report `ACCEPT median(11) >= 25; 174008 proof nodes`. It regenerates the certificate, checks adversarial mutations, and compares against an independent exhaustive calculation at widths two through six. The exact source relation between the catalogue witness JSON and Lean is checked by the Lean build script.
+The first command checks the witness on all 2,048 binary and 177,147 ternary inputs, regenerates the certificate, tests adversarial mutations, and compares the Python and C++ replays. The second runs the Lean executable replay using the pinned toolchain. All three readers agree on the 26 claims and end with `ACCEPT median(11) >= 25; 174008 proof nodes`. The last command rebuilds the two PDFs.
 
 For individual runs, the original commands `python3 verify.py median11_25.json` and `python3 check_certificate.py` remain available. See [the verification record](docs/reproducibility.md) for additional commands.
 
@@ -34,7 +46,7 @@ Selecting the correct output bit forces every remaining output bit to be fixed w
 
 ## Archived versions
 
-Cite this artifact by its exact Git commit. The [stable 1.0.0 release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.0) and earlier DOI deposits identify distinct snapshots.
+Cite this artifact by its exact Git commit. From the repository root, `bash scripts/archive.sh /tmp/median-review HEAD` exports the selected commit to a ZIP with a SHA-256 checksum. The [stable 1.0.0 release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.0) and earlier DOI deposits identify distinct snapshots.
 
 | Snapshot | Archive |
 |---|---|

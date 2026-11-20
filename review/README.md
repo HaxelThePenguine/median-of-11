@@ -2,11 +2,11 @@
 
 **Optimality of a 25-Comparator Median Selection Network on Eleven Inputs**
 
-Rocco Martino · Version 1.0.0-rc.3
+Rocco Martino · Version 1.0.0
 
 - Read the [one-page review summary](summary.pdf) and [manuscript](../paper/main.pdf).
-- The [permanent repository](https://github.com/HaxelThePenguine/median-of-11) and [candidate PR](https://github.com/HaxelThePenguine/median-of-11/pull/1) contain the sources. For an immutable reference, use the exact Git commit named in the verification record accompanying the exported ZIP.
-- The version-specific DOI [10.5281/zenodo.24397716](https://doi.org/10.5281/zenodo.24397716) identifies the immutable historical [v1.0.0-rc.2 snapshot](https://github.com/HaxelThePenguine/median-of-11/commit/0b5d0a32eda56327b504344ed3d949957a72e0a7). Version 1.0.0-rc.3 is a PR candidate awaiting an archive DOI.
+- The [repository](https://github.com/HaxelThePenguine/median-of-11) and [release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.0) contain the sources. For an immutable reference, cite the exact Git commit.
+- The version-specific DOI [10.5281/zenodo.24397716](https://doi.org/10.5281/zenodo.24397716) identifies the immutable historical [v1.0.0-rc.2 snapshot](https://github.com/HaxelThePenguine/median-of-11/commit/0b5d0a32eda56327b504344ed3d949957a72e0a7).
 
 ## What to review
 
@@ -15,8 +15,8 @@ The proof rules out at most 24 comparators at unrestricted depth, giving a match
 1. Boundary-layer constancy keeps the full output vector fixed within each of the two threshold-adjacent weight layers. Review the Boolean cover proof in Section 3 and `boundary_constant` in [ConcreteBoundary.lean](../formal/Median11/ConcreteBoundary.lean).
 2. At the first reuse of a wire, both gate inputs have combined support size at most four. The same boundary layer supplies all-zero and all-one assignments on that support. Review Section 4 and [three_comparisons](../formal/Median11/ExtremePath.lean).
 3. Deletion removes a sentinel's comparisons while transporting the surviving values by a moving wire bijection. Verify that a valid interior rank still has an ordinary output. See [Deletion.lean](../formal/Median11/Deletion.lean).
-4. A cached exclusion is about the residual suffix problem. A common permutation identifies the two image layers, and the earlier expansion closed before reuse. Verify the transition from an actual prefix to residual images in [Replay.lean](../formal/Median11/Replay.lean) and [Pruning.lean](../formal/Median11/Pruning.lean).
-5. Confirm the conditional proof uses both nine-wire claims and the right dual rank in [LowerBound.lean](../formal/Median11/LowerBound.lean).
+4. A cached exclusion is about the residual suffix problem. The replay checks the common permutation and the completion of the earlier expansion before reuse. Verify the transition from an actual prefix to residual images in [PackedReplay.lean](../formal/Median11/PackedReplay.lean) and [Pruning.lean](../formal/Median11/Pruning.lean).
+5. Trace the nine-wire bounds and rank duality through [LowerBound.lean](../formal/Median11/LowerBound.lean) and the exact-size theorem in [Optimality.lean](../formal/Median11/Optimality.lean).
 
 ## Verification
 

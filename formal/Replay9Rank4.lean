@@ -1,10 +1,4 @@
-import Median11.CertificateData
+import Median11.KernelData.Rank9_4.Result
 
-set_option maxRecDepth 100000
-set_option maxHeartbeats 0
-
-theorem nine_rank_four_replay :
-    Median11.verifyReplay 9 4 18 14 16 Median11.data9_4 = true := by
-  decide +kernel
-
-#print axioms nine_rank_four_replay
+#check Median11.bound_9_4
+#print axioms Median11.bound_9_4

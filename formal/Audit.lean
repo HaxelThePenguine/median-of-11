@@ -17,6 +17,17 @@ import Median11
 #print axioms Median11.bound_6_1
 #print axioms Median11.bound_6_2
 #print axioms Median11.bound_6_3
+#print axioms Median11.bound_7_1
+#print axioms Median11.bound_7_2
+#print axioms Median11.bound_7_3
+#print axioms Median11.bound_7_4
+#print axioms Median11.bound_8_1
+#print axioms Median11.bound_8_2
+#print axioms Median11.bound_8_3
+#print axioms Median11.bound_8_4
+#print axioms Median11.bound_8_5
+#print axioms Median11.bound_9_4
+#print axioms Median11.bound_9_5
 #print axioms Median11.published_size
 #print axioms Median11.published_standard
 #print axioms Median11.published_binary
@@ -24,4 +35,6 @@ import Median11
 #print axioms Median11.median11_from_nine
 #print axioms Median11.standard_lower_from_nine
 #print axioms Median11.median11_optimal_from_nine
+#print axioms Median11.median11_lower
+#print axioms Median11.median11_optimal
 #print axioms Median11.decodeOps_codes

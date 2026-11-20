@@ -51,6 +51,35 @@ theorem bound_6_3 : Bound 6 3 10 :=
   verify_replay_sound (budget := 9) (by decide) (by decide) (Or.inr ⟨by decide, bound_5_2⟩)
     (Or.inr ⟨by decide, bound_5_3⟩) data6_3 (by decide +kernel)
 
+theorem bound_7_1 : Bound 7 1 6 :=
+  verify_replay_sound (budget := 5) (by decide) (by decide) (Or.inl rfl)
+    (Or.inr ⟨by decide, bound_6_1⟩) data7_1 (by decide +kernel)
+
+theorem bound_7_2 : Bound 7 2 11 :=
+  verify_replay_sound (budget := 10) (by decide) (by decide) (Or.inr ⟨by decide, bound_6_1⟩)
+    (Or.inr ⟨by decide, bound_6_2⟩) data7_2 (by decide +kernel)
+
+theorem bound_7_3 : Bound 7 3 12 :=
+  verify_replay_sound (budget := 11) (by decide) (by decide) (Or.inr ⟨by decide, bound_6_2⟩)
+    (Or.inr ⟨by decide, bound_6_3⟩) data7_3 (by decide +kernel)
+
+theorem bound_7_4 : Bound 7 4 13 :=
+  verify_replay_sound (budget := 12) (by decide) (by decide) (Or.inr ⟨by decide, bound_6_3⟩)
+    (Or.inr ⟨by decide, bound_dual (r := 3) (by decide) (by decide) bound_6_3⟩)
+    data7_4 (by decide +kernel)
+
+theorem bound_8_1 : Bound 8 1 7 :=
+  verify_replay_sound (budget := 6) (by decide) (by decide) (Or.inl rfl)
+    (Or.inr ⟨by decide, bound_7_1⟩) data8_1 (by decide +kernel)
+
+theorem bound_8_2 : Bound 8 2 13 :=
+  verify_replay_sound (budget := 12) (by decide) (by decide) (Or.inr ⟨by decide, bound_7_1⟩)
+    (Or.inr ⟨by decide, bound_7_2⟩) data8_2 (by decide +kernel)
+
+theorem bound_8_3 : Bound 8 3 14 :=
+  verify_replay_sound (budget := 13) (by decide) (by decide) (Or.inr ⟨by decide, bound_7_2⟩)
+    (Or.inr ⟨by decide, bound_7_3⟩) data8_3 (by decide +kernel)
+
 #print axioms bound_6_3
 
 end Median11

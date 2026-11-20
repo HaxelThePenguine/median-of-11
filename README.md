@@ -2,7 +2,7 @@
 
 A computer-assisted proof gives a matching lower bound for Bert Dobbelaere's published 25-comparator construction. The network is a fixed sequence of compare–exchange operations. Each pair `i < j` places the smaller value on wire `i` and the larger on wire `j`. Wire 5, numbered from zero, returns the sixth smallest input, including ties. The size bound allows arbitrary depth.
 
-**Version 1.0.0-rc.3 · release candidate on PR #1.** The Lean kernel checks the upper-bound witness, structural lower-bound arguments, replay soundness, and the small-width replays documented in the formal verification report. The two concrete nine-wire lower bounds in the final reduction remain explicit hypotheses of the Lean optimality theorem. The complete computational certificate is verified by Python and C++.
+**Version 1.0.0.** Lean 4.19.0 checks the exact-size theorem `Median11.median11_optimal` without certificate hypotheses. The kernel verifies the upper-bound witness, the reduction, and the concrete nine-wire exclusions at ranks four and five with their prerequisite bounds. Python, C++ and the Lean executable checker replay the complete computational certificate with matching results.
 
 | Entry point | Start here |
 |---|---|
@@ -34,7 +34,7 @@ Selecting the correct output bit forces every remaining output bit to be fixed w
 
 ## Archived versions
 
-The candidate on [PR #1](https://github.com/HaxelThePenguine/median-of-11/pull/1) has no archive DOI. Cite it by its commit. The earlier archived snapshots have their own version-specific DOIs.
+Cite version 1.0.0 by its Git tag. The earlier archived snapshots have their own version-specific DOIs.
 
 | Snapshot | Archive |
 |---|---|

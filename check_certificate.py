@@ -15,7 +15,7 @@ def require(condition,message):
     if not condition:
         raise ValueError(message)
 
-def check(n,r,budget,data,established,reference=None):
+def check(n,r,budget,data,established,reference=None,record_node=None,record_expansion=None):
     masks=range(1<<n)
     choices=list(combinations(range(n),2))
     allowed={}
@@ -58,12 +58,14 @@ def check(n,r,budget,data,established,reference=None):
         a,b=1<<i,1<<j
         return frozenset(x^a^b if x&a and not x&b else x for x in layer)
 
-    def visit(layers,trace,k):
+    def visit(layers,trace,k,path=()):
         nonlocal visited
         offset=visited
         visited+=1
         code=next(codes,None)
         require(code in (0,1,2,3),"invalid or missing proof node")
+        if record_node is not None:
+            record_node(offset,code,layers,trace,k,path)
         # Directly check whether a wire already realises the threshold.
         varying=variations(layers[0])|variations(layers[1])
         u,v=map(next,map(iter,layers))
@@ -84,17 +86,30 @@ def check(n,r,budget,data,established,reference=None):
                 reference(offset,old_offset,order,old_order)
             return
         require(k>0,"invalid expansion at zero remaining budget")
+        edges=[] if record_expansion is not None else None
         for i,j in choices:
             # An unconditional exchange, like an identity, is only a wire
             # renaming on these layers. Check this in both directions.
             touched=[((x>>i)&1,(x>>j)&1) for layer in layers for x in layer]
             if (1,0) not in touched or (0,1) not in touched:
+                if edges is not None:
+                    edges.append(("redundant",))
                 continue
             new_trace=tuple(tuple(((i if sign==0 else j),d+1) if w in (i,j) else (w,d)
                                   for w,d in trace[sign]) for sign in [0,1])
             if any(any(d>allowed[sign] for _,d in new_trace[sign]) for sign in [0,1]):
+                if edges is not None:
+                    sign,origin=next((sign,origin)
+                        for sign in [0,1] for origin,(_,d) in enumerate(new_trace[sign])
+                        if d>allowed[sign])
+                    edges.append(("path",origin,sign))
                 continue
-            visit(tuple(transform(layer,i,j) for layer in layers),new_trace,k-1)
+            if edges is not None:
+                edges.append(("node",visited))
+            visit(tuple(transform(layer,i,j) for layer in layers),new_trace,k-1,
+                  path+((i,j),) if record_node is not None else ())
+        if edges is not None:
+            record_expansion(offset,visited,edges)
         if sources is not None and k>=memo.get(key,-1):
             sources[key]=offset,order
         memo[key]=max(k,memo.get(key,-1))

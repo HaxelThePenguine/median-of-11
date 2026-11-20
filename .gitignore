@@ -4,3 +4,9 @@ rebuilt.jsonl
 *.new.*
 /anneal
 /exact
+/paper/*.aux
+/paper/*.log
+/paper/*.out
+/paper/*.blg
+/paper/*.fls
+/paper/*.fdb_latexmk

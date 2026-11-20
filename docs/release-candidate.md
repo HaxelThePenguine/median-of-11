@@ -1,0 +1,9 @@
+# Release candidate 1.0.0-rc.3
+
+This note records the scope of the [original candidate commit](https://github.com/HaxelThePenguine/median-of-11/commit/68f33a2a87384ab8d3a63817dfe9fcc43b501402). See the [current formal verification report](formal-verification.md) for version 1.0.0.
+
+This candidate preserves the original certificate and the published 25-gate construction. It adds the complete mathematical reduction in Lean 4, checks the upper bound by kernel evaluation, formalizes certificate replay soundness, and checks the concrete certificate through width six. The full Python, C++ and executable Lean replay remains reproducible from the same certificate archive.
+
+The exact-size theorem in Lean still takes two nine-wire bounds as hypotheses. See the [formal verification report](formal-verification.md) for the remaining obligations. The stable tag and release DOI are pending kernel acceptance and CI on the final stable commit. This candidate has no Zenodo record. Cite the reviewed Git revision for the candidate, or use the version-specific DOI of the archived snapshot actually used.
+
+The original-work terms and the third-party construction notice are included in the repository. The historical Zenodo records use CC BY 4.0 as record-level metadata and describe the mixed terms in their descriptions to different extents. For a new archive, retain both notices inside the archive. If the Zenodo record editor permits multiple licences, add MIT and CC BY 4.0 and describe the file scopes explicitly. If it exposes one record-level licence field, put the mixed-scope language in the description and identify the applicable notices alongside the deposit files.

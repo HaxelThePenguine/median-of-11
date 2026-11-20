@@ -4,3 +4,17 @@ rebuilt.jsonl
 *.new.*
 /anneal
 /exact
+/paper/*.aux
+/paper/*.log
+/paper/*.out
+/paper/*.blg
+/paper/*.fls
+/paper/*.fdb_latexmk
+/formal/.lake/
+/formal/Median11/CertificateData.lean
+/formal/Median11/KernelData/
+/review/summary.aux
+/review/summary.log
+/review/summary.out
+/review/summary.fls
+/review/summary.fdb_latexmk

@@ -29,7 +29,7 @@ Toolchain observed locally was Python 3.12.14, GCC/G++ 14.2.0, Lean 4.19.0 commi
 
 A direct `decide +kernel` attempt for the 167,917-node replay at width nine and rank four ended with exit 137 after 60.587 s. The analogous baseline attempt for rank five ended with exit 137 after 37.766 s. Retrying rank five with packed row sets and a 6,000,000 KiB process limit produced `INTERNAL PANIC: out of memory`, exit 1 after 30.357 s. These are resource failures in the trial environment. The packed rank-four retry also ran out of memory at the same process limit, exiting 1 after 32.270 s. Both claims were accepted by the executable Lean replay and the two independent readers.
 
-Reproduce the isolated attempts with `formal/Replay9Rank4.lean` and `formal/Replay9Rank5.lean` after generating the complete Lean input. The first 11 archive claims and the upper-bound witness are part of the successful default Lake build. The pinned Linux Lean archive SHA-256 is in `verification/lean/toolchain.sha256`.
+Reproduce the isolated attempts at commit `68f33a2a87384ab8d3a63817dfe9fcc43b501402` with `formal/Replay9Rank4.lean` and `formal/Replay9Rank5.lean` after generating the complete Lean input. The first 11 archive claims and the upper-bound witness are part of that candidate's successful default Lake build. The pinned Linux Lean archive SHA-256 is in `verification/lean/toolchain.sha256`.
 
 ## GitHub Actions
 

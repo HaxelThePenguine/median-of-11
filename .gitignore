@@ -12,6 +12,7 @@ rebuilt.jsonl
 /paper/*.fdb_latexmk
 /formal/.lake/
 /formal/Median11/CertificateData.lean
+/formal/Median11/KernelData/
 /review/summary.aux
 /review/summary.log
 /review/summary.out

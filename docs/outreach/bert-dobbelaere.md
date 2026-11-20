@@ -6,9 +6,9 @@ I’m Rocco Martino, a master’s student in Cybersecurity at Politecnico di Tor
 
 The proof uses two adjacent Boolean Hamming layers. Selection forces the entire output to be constant on each layer, which makes an extreme input meet at least three comparators. Deleting that input and repeating the argument reduces the lower bound to two nine-input rank-selection problems. A finite certificate for those exclusions is replayed by separate Python and C++ implementations.
 
-Lean 4 checks the upper-bound witness, the reduction and the soundness of the replay rules. The two concrete nine-input lower bounds are still explicit hypotheses of the Lean optimality theorem.
+The Lean 4.19.0 kernel verifies both nine-input lower bounds and proves the exact-size theorem using your construction. It also checks the decoded certificate for all 26 archived exclusions.
 
-Current paper: https://github.com/HaxelThePenguine/median-of-11/blob/research/median11-independent-audit/paper/main.pdf
+Current paper: https://github.com/HaxelThePenguine/median-of-11/blob/6118662a99fee8b8f881eb4b8048efc173e4649a/paper/main.pdf
 
 Repository and verification sources: https://github.com/HaxelThePenguine/median-of-11
 

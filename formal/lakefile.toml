@@ -1,0 +1,5 @@
+name = "median11"
+defaultTargets = ["Median11"]
+
+[[lean_lib]]
+name = "Median11"

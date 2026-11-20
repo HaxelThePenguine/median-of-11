@@ -65,12 +65,19 @@ Luk{\'a}{\v s} Sekanina, Zden{\v e}k Va{\v s}{\'i}{\v c}ek, and Vojt{\v e}ch
   approximate median filter.
 \newblock {\em Radioengineering}, 26:623--632, 2017.
 
+\bibitem{smith}
+John~L. Smith.
+\newblock Implementing median filters in {XC4000E FPGAs}.
+\newblock {\em Xcell}, (23):16, 1996.
+\newblock
+  \url{https://bitsavers.trailing-edge.com/components/xilinx/xcell/Xcell23.pdf}.
+
 \bibitem{tomar}
 Tejasvi~Singh Tomar.
 \newblock Exact sizes of networks that select the three or four largest of
   {$n$} elements, 2026.
-\newblock Preprint.
-  \url{https://www.mefyi.com/papers/selection-networks-three-four-largest/}.
+\newblock
+  \href{https://www.mefyi.com/papers/selection-networks-three-four-largest/}{Preprint}.
 
 \bibitem{tomarsort}
 Tejasvi~Singh Tomar.

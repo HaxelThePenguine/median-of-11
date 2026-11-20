@@ -10,3 +10,10 @@ rebuilt.jsonl
 /paper/*.blg
 /paper/*.fls
 /paper/*.fdb_latexmk
+/formal/.lake/
+/formal/Median11/CertificateData.lean
+/review/summary.aux
+/review/summary.log
+/review/summary.out
+/review/summary.fls
+/review/summary.fdb_latexmk

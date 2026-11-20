@@ -100,3 +100,17 @@ The ZIP contains the tracked files at that commit, including source, certificate
 ## Historical experiments
 
 With the Z3 shared library available, `python3 verification/tests/history.py` reconstructs archived job labels, checks the saved global SMT formula byte for byte, evaluates stored positive witnesses and checks annealing scores. We ran it successfully. The 94 small-window UNSAT entries, 2 wide-window UNSAT entries, 30 wide-window unknowns, 206 exact local exclusions and 4,048 repair exclusions are archival solver outcomes. We did not rerun those solvers. The unrestricted SAT attempts both ended unknown. None of these historical outcomes is used by the certificate.
+
+## Current candidate
+
+The sections above preserve the 1.0.0-rc.1 audit record. For 1.0.0-rc.3 use
+[the current execution record](rc3-validation.md) and the
+[Lean verification report](formal-verification.md).
+
+```sh
+bash scripts/verify.sh
+bash scripts/verify-lean.sh
+bash scripts/evaluate-lean-archive.sh
+bash scripts/build-paper.sh
+bash scripts/archive.sh /tmp/median-review
+```

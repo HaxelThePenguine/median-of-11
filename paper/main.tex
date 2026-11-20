@@ -11,7 +11,7 @@
 \newcommand{\wt}{\operatorname{wt}}
 \title[Optimal median selection on eleven inputs]{Optimality of a 25-Comparator Median Selection Network on Eleven Inputs}
 \author{Rocco Martino}
-\date{20 November 2026}
+\date{20 November 2026, version 1.0.0-rc.3}
 \keywords{Comparator networks, order statistics, size optimality, computer-assisted proof}
 \subjclass[2020]{68P10, 68Q17}
 \begin{document}
@@ -26,7 +26,9 @@ input to meet three comparators. Two deletions reduce the lower bound to
 ranks four and five on nine wires, up to duality. A finite exclusion
 certificate establishes both inequalities and their prerequisites. Python
 and C++ checkers replay all 174\,008 nodes of the full certificate,
-including direct exclusions at widths ten and eleven.
+including direct exclusions at widths ten and eleven. Lean checks the
+upper bound, the reduction and the soundness of an opcode checker. The
+concrete nine-wire lower-bound obligations remain open in the kernel.
 \end{abstract}
 \maketitle
 
@@ -55,11 +57,15 @@ Afshani et al.\ show that a single-rank network induces a fixed partition of
 its outputs \cite[Lemmas 17--18]{afshani}. The two singleton images below
 are a Boolean formulation of this phenomenon. Tomar proves a two-comparison
 deletion step for selecting a group of largest elements \cite[Lemma 1.4]{tomar}
-and uses extreme deletion for sorting \cite{tomarsort}. Harder generalizes
+and uses extreme deletion for sorting \cite{tomarsort}. Smith published a
+19-comparator median network for nine inputs, described it as minimal and
+supplied no exclusion proof in the article \cite[Fig.~1]{smith}. Harder generalizes
 the Van Voorhis deletion bound to sorting residual input sets and verifies
 a certificate in Isabelle/HOL \cite{harder}. We specialize the path argument
 to a single interior rank and combine it with a two-layer search. We found
 no earlier proof of \cref{thm:main} in the sources examined.
+The contribution here is the size lower bound for an existing construction.
+Historical priority remains open.
 
 \section{Model and threshold reduction}
 An oriented gate $(a,b)$ has distinct ports. It writes the smaller of $x_a,x_b$

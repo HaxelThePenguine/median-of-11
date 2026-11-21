@@ -24,6 +24,8 @@ bash scripts/verify-lean.sh
 
 The script checks the certificate and witness hashes, generates the Lean replay data, runs a clean build, and audits the transitive axioms for every archived exclusion and the final theorem. For `Median11.median11_optimal`, expect `propext`, `Classical.choice` and `Quot.sound`. Lean checks the proof on the decoded data. The host tools check the gzip archive and the translation to Lean input. [Formal verification report](docs/formal-verification.md)
 
+For a fixed decidable total order with at least two distinct values, the theorem `Median11.median11_optimal_on` gives both bounds on that domain.
+
 The recorded Windows build took about 12 minutes. [Reproducibility record](docs/reproducibility.md#local-verification-of-101)
 
 ## Replay the archive and build the paper

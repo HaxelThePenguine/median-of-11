@@ -12,6 +12,10 @@ The Lean kernel proves `Median11.median11_optimal` without premises about certif
 | `bound_10_5`, `bound_11_6` | Direct replays of the archived wider exclusions, with a lower bound of 22 and 25 respectively. Rank duality supplies `bound_10_6`. |
 | `median11_lower`, `median11_optimal` | The eleven-wire lower bound and exact size. |
 
+## A fixed ordered domain
+
+`Median11.median11_optimal_on` proves the exact size when the input type is fixed in advance, for example to integers. Its hypotheses specify a decidable total order and two values strictly ordered in it. The lower bound permits either gate orientation. The named witness uses standard orientations. The underlying lemma `Median11.selectsBinary_of_orderedRank` restricts the input rows to those two values and transports both rank counts. On a singleton input type the empty network already meets the specification.
+
 ## Certificate replay
 
 The build checks the decoded proof data for all 26 archive claims and 174,008 nodes. The list-based checker covers the claims through width seven, the first three eight-wire ranks, and `9-1`. The packed checker covers `8-4`, `9-2` through `9-5`, `10-5`, and `11-6`. The largest replay, `9-4`, contains 167,917 opcodes in 659 blocks. The top-level optimality theorem uses the mathematical deletion reduction from `9-4` and `9-5`. The wider replays also prove their size bounds directly from the smaller-width lemmas. The executable Lean replay agrees with the Python and C++ replays.

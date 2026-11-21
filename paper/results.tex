@@ -80,6 +80,14 @@ orientation of Dobbelaere's witness, enumerates all $2^{11}$ Boolean
 inputs, and proves correctness on every decidable total order in
 \texttt{Median11.published\_selects}.
 
+For a specification over a single ordered domain, choose two values
+$a<b$ and encode each Boolean input by these values. Compare--exchange
+commutes with this encoding, and the two rank counts are preserved
+because the encoding reflects order. Thus correctness on that domain
+implies correctness on the Boolean cube. Together with the witness this
+gives exact size on every decidable total order containing a strict
+pair. On a singleton domain the empty network already selects the median.
+
 The kernel verifies the decoded proof data for all 26 exclusions in
 \cref{tab:counts}. The list-based checker reduces the smaller preorder
 replays directly. The packed checker uses natural-number bit masks for

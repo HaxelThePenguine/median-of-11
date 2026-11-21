@@ -44,3 +44,5 @@ import Median11
 #print axioms Median11.median11_lower
 #print axioms Median11.median11_optimal
 #print axioms Median11.decodeOps_codes
+#print axioms Median11.selectsBinary_of_orderedRank
+#print axioms Median11.median11_optimal_on

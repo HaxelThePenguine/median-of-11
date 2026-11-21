@@ -46,7 +46,7 @@ theorem deletion_step_bound {n r bmin bmax : Nat} (lo : 1 < r) (hi : r ≤ n)
     omega
 
 /-- The concrete reduction. The two nine-wire bound hypotheses are discharged
-by the external certificate replay in the paper, not by this theorem. -/
+by the kernel-checked replays used in Median11.Optimality. -/
 theorem median11_from_nine (rank4 : Bound 9 4 19) (rank5 : Bound 9 5 19) :
     Bound 11 6 25 := by
   have rank6 : Bound 9 6 19 := bound_dual (r := 4) (by decide) (by decide) rank4

@@ -35,7 +35,7 @@ for line in lines:
 expected = re.findall(r"^#print axioms (Median11\.\w+)$", Path("Audit.lean").read_text(), re.M)
 claims = json.loads(Path("../certificate/claims.json").read_text())
 required = {f"Median11.bound_{n}_{rank}" for n, rank, _ in claims}
-required.update({"Median11.median11_lower", "Median11.median11_optimal"})
+required.update({"Median11.median11_lower", "Median11.median11_optimal", "Median11.median11_optimal_on"})
 if names != expected or len(names) != len(set(names)) or not required.issubset(names):
     raise SystemExit("missing, duplicate or unexpected axiom reports")
 PY

@@ -12,6 +12,7 @@ For an output value `v`, `RankValue` requires fewer than six entries strictly be
 | `bound_7_3`, `bound_7_4`, `bound_8_3`, `bound_8_4`, `bound_8_5` | The prerequisite incidence bounds, including rank five on eight wires by duality. |
 | `bound_9_4`, `bound_9_5` | Each rank needs at least 19 comparators on nine wires. |
 | `bound_10_5`, `bound_11_6` | Direct replays of the archived wider exclusions, with a lower bound of 22 and 25 respectively. Rank duality supplies `bound_10_6`. |
+| `selectsBinary_of_orderedRank`, `median11_optimal_on` | Restriction to a strict pair transfers the Boolean lower bound to each fixed decidable total order with at least two values. |
 | `median11_lower`, `median11_optimal` | The eleven-wire lower bound and exact size. |
 
 ## Certificate replay

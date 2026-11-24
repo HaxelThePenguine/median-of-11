@@ -105,6 +105,12 @@ result without certificate premises. Its lower bound follows from
 the two verified nine-wire exclusions and the deletion recurrence.
 The archived eleven-wire exclusion gives a second checked derivation
 of the numerical lower bound, using the same smaller-width bounds.
+The theorem \texttt{median11\_optimal\_on} proves the same
+minimum on each fixed decidable total order containing two distinct
+values. The proof maps the two Boolean values to a strict pair in that
+order. This embedding commutes with the comparators and preserves the
+two counts in the rank predicate.
+
 The three axiom dependencies reported for the exact-size theorem are
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
 The Lean project uses core and Std.

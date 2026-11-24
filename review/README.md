@@ -2,10 +2,10 @@
 
 **Optimality of a 25-Comparator Median Selection Network on Eleven Inputs**
 
-Rocco Martino · Version 1.0.2
+Rocco Martino · Version 1.0.3
 
 - Read the [one-page review summary](summary.pdf) and [manuscript](../paper/main.pdf).
-- The [repository](https://github.com/HaxelThePenguine/median-of-11) contains the sources. For an immutable reference, cite the exact Git commit. The [stable 1.0.0 release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.0) identifies the earlier kernel-checked optimality proof.
+- The [repository](https://github.com/HaxelThePenguine/median-of-11) contains the sources. For an immutable reference, cite the exact Git commit. The [v1.0.2 release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.2) archives the preceding manuscript revision.
 - The version-specific DOI [10.5281/zenodo.24397716](https://doi.org/10.5281/zenodo.24397716) identifies the immutable historical [v1.0.0-rc.2 snapshot](https://github.com/HaxelThePenguine/median-of-11/commit/0b5d0a32eda56327b504344ed3d949957a72e0a7).
 
 ## What to review

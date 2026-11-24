@@ -7,15 +7,15 @@
 \begin{document}
 {\LARGE\bfseries Research Summary for External Review\par}
 {\large Optimality of a 25-Comparator Median Selection Network on Eleven Inputs\par}
-Rocco Martino \hfill \texttt{1.0.2} \hfill 24 November 2026
+Rocco Martino \hfill \texttt{1.0.3} \hfill 24 November 2026
 
 \textbf{Claim.} Exactly 25 comparators are necessary and sufficient to select the sixth smallest of eleven values on wire 5 in a fixed compare--exchange network with unrestricted depth. The upper bound is Bert Dobbelaere's published 25-comparator construction. The lower bound excludes every network of size at most 24, allowing either comparator orientation and any fixed output wire.
 
 \textbf{Argument.} On the two Boolean layers straddling the selection threshold, monotonicity and preservation of Hamming weight force the complete output vector to be constant on each layer. At the first reuse of a wire, an extreme input can traverse two comparisons. Its current output still varies on a sufficiently balanced boundary layer, so it must meet a third comparator. Deleting that extreme leaves a smaller network and saves at least three comparisons. A 24-gate counterexample would leave at most 18 gates on nine inputs. Each possible surviving rank (four, five or six) needs at least 19, with rank six covered by duality.
 
-\textbf{Evidence.} Lean 4.19.0 checks the exact-size theorem and the decoded proof data for all 26 exclusions, comprising 174,008 certificate nodes. It verifies the witness on all 2,048 binary inputs and extends its correctness to decidable total orders. Standalone Python and C++ checkers replay the original archive. Independent human mathematical review and historical priority remain open.
+\textbf{Evidence.} Lean 4.19.0 checks the exact-size theorem and the decoded proof data for all 26 exclusions, comprising 174,008 certificate nodes. It verifies the witness on all 2,048 binary inputs and proves exact size on every decidable total order containing two distinct values. Standalone Python and C++ checkers replay the original archive. Independent human mathematical review and historical priority remain open.
 
 \textbf{Feedback sought.} Is there an earlier proof of size optimality for eleven inputs? Please scrutinize the choice of the balanced boundary layer at the first reused wire, the moving-bijection deletion proof, and the soundness of reusing a completed exclusion under a common wire permutation when the two prefixes have different extreme traces.
 
-\textbf{Materials.} The \href{https://github.com/HaxelThePenguine/median-of-11}{repository} contains the paper, proof sources, and reviewer guide. Cite the Git commit of the archive used. The \href{https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.1}{preceding release} archives the same Lean sources and finite certificates.
+\textbf{Materials.} The \href{https://github.com/HaxelThePenguine/median-of-11}{repository} contains the paper, proof sources, and reviewer guide. Cite the Git commit of the archive used. The \href{https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.2}{preceding release} archives the preceding manuscript revision.
 \end{document}

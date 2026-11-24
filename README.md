@@ -2,7 +2,7 @@
 
 Exactly **25 comparators** are necessary and sufficient to select the sixth smallest of eleven inputs on wire 5, numbered from zero. The standard model uses a fixed sequence of compare–exchange operations, with each pair `i < j` sending the smaller value to wire `i`. The result allows arbitrary depth and includes inputs with ties. Bert Dobbelaere published the 25-comparator construction.
 
-**Artifact version 1.0.2.** Lean 4.19.0 proves `Median11.median11_optimal` using the verified witness and lower bounds. The kernel checks the decoded proof data for all 26 archived exclusions, comprising 174,008 nodes.
+**Artifact version 1.0.3.** Lean 4.19.0 proves `Median11.median11_optimal` using the verified witness and lower bounds. The theorem `Median11.median11_optimal_on` gives the exact size on each decidable total order with at least two distinct values. The kernel checks the decoded proof data for all 26 archived exclusions, comprising 174,008 nodes.
 
 | Entry point | Start here |
 |---|---|
@@ -47,9 +47,9 @@ Selecting the correct output bit forces every remaining output bit to be fixed w
 
 ## Archived versions
 
-The [v1.0.1 release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.1) contains the same proof sources and certificates as this editorial revision.
+The [v1.0.2 release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.2) archives the preceding manuscript revision.
 
-Cite this artifact by its exact Git commit. From the repository root, `bash scripts/archive.sh /tmp/median-review HEAD` exports the selected commit to a ZIP with a SHA-256 checksum. The [stable 1.0.0 release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.0) and earlier DOI deposits identify distinct snapshots.
+Cite this artifact by its exact Git commit. From the repository root, `bash scripts/archive.sh /tmp/median-review HEAD` exports the selected commit to a ZIP with a SHA-256 checksum. The DOI deposits below identify earlier snapshots.
 
 | Snapshot | Archive |
 |---|---|

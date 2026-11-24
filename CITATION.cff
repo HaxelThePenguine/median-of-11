@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: Martino
     given-names: Rocco
-version: 1.0.1
+version: 1.0.2
 repository-code: https://github.com/HaxelThePenguine/median-of-11
 url: https://github.com/HaxelThePenguine/median-of-11
 keywords:
@@ -20,5 +20,5 @@ preferred-citation:
     - family-names: Martino
       given-names: Rocco
   year: 2026
-  version: 1.0.1
+  version: 1.0.2
   url: https://github.com/HaxelThePenguine/median-of-11

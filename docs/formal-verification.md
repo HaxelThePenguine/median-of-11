@@ -2,6 +2,8 @@
 
 The Lean kernel proves `Median11.median11_optimal` without premises about certificate acceptance. In the standard-orientation model with output fixed to wire 5, a network of 25 comparators exists and every network that selects the sixth rank has at least 25 comparators. `Median11.median11_lower` gives the lower bound for either comparator orientation and any fixed output wire. Its Boolean-domain statement suffices for networks that must work on all inputs. The witness theorem `Median11.published_selects` holds over every decidable total order, including inputs with ties.
 
+For an output value `v`, `RankValue` requires fewer than six entries strictly below `v` and at least six entries at or below it when `r = 6`. Each occurrence counts. On Boolean rows, `SelectsBinary` requires a one exactly when at least six inputs are one. In `Bound`, the network and the output index are quantified before input correctness is tested. Each gate operates on two distinct in-range wires, and list length counts every use, including repeated pairs. [Network semantics](../formal/Median11/Network.lean) · [Rank predicates](../formal/Median11/BinaryReduction.lean) · [Lower bound](../formal/Median11/LowerBound.lean)
+
 | Lean declaration | Kernel-checked result |
 |---|---|
 | `published_size`, `published_standard`, `published_binary`, `published_selects` | Dobbelaere's 25-comparator witness, its Boolean correctness on all 2,048 inputs, and its extension to decidable total orders. |

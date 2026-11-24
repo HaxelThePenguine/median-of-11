@@ -11,23 +11,23 @@
 \newcommand{\wt}{\operatorname{wt}}
 \title[Optimal median selection on eleven inputs]{Optimality of a 25-Comparator Median Selection Network on Eleven Inputs}
 \author{Rocco Martino}
-\date{20 November 2026, version 1.0.1}
+\date{24 November 2026, version 1.0.2}
 \keywords{Comparator networks, order statistics, size optimality, computer-assisted proof}
 \subjclass[2020]{68P10, 68Q17}
 \begin{document}
 \begin{abstract}
-Exactly 25 comparators are necessary and sufficient to place the median of
-eleven inputs on a prescribed middle wire in a fixed compare-exchange
-network. The upper bound is a network listed by Bert Dobbelaere. For the
-lower bound we allow either comparator orientation and any fixed output wire.
-Selection collapses each of two consecutive Hamming layers to a single
-configuration. On a sufficiently balanced layer this forces one extreme
-input to meet three comparators. Two deletions reduce the lower bound to
-ranks four and five on nine wires, up to duality. A finite exclusion
-certificate establishes both inequalities and their prerequisites. Python
-and C++ checkers replay all 174\,008 nodes of the full certificate,
-including direct exclusions at widths ten and eleven. The Lean kernel
-checks the exact-size theorem and replays all 26 archived exclusions.
+We prove that a fixed compare-exchange network needs at least 25
+comparators to select the median of eleven inputs, even with arbitrary
+depth, either gate orientation and a freely chosen fixed output wire.
+Dobbelaere's 25-comparator construction attains the bound on the middle
+wire. The lower bound follows from a deletion argument. Selecting one
+rank fixes the entire output vector on each of two adjacent Boolean
+weight layers. This forces an extreme input to traverse at least three
+gates. A putative 24-gate network would therefore yield, after two
+deletions, a network of at most 18 gates selecting rank four, five or
+six on nine inputs. Rank duality and two certified finite exclusions
+rule out all three cases. Lean~4 checks the exact-size theorem and the
+decoded certificates for all 26 archived exclusions.
 \end{abstract}
 \maketitle
 
@@ -37,7 +37,8 @@ as soon as the median is determined. An explicit circuit gives an upper
 bound on its cost. A matching lower bound must exclude every shorter
 sequence, including sequences of greater depth.
 \begin{theorem}\label{thm:main}
-For eleven wires numbered $0,\ldots,10$, the minimum number of
+Over any totally ordered domain containing at least two values, consider
+eleven wires numbered $0,\ldots,10$. The minimum number of
 compare-exchanges with the smaller output on the lower-numbered wire
 that select the sixth smallest input on wire 5 is 25.
 \end{theorem}
@@ -63,8 +64,7 @@ the Van Voorhis deletion bound to sorting residual input sets and verifies
 a certificate in Isabelle/HOL \cite{harder}. We specialize the path argument
 to a single interior rank and combine it with a two-layer search. We found
 no earlier proof of \cref{thm:main} in the sources examined.
-The contribution here is the size lower bound for an existing construction.
-Historical priority remains open.
+
 
 \section{Model and threshold reduction}
 An oriented gate $(a,b)$ has distinct ports. It writes the smaller of $x_a,x_b$

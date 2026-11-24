@@ -2,11 +2,12 @@
 
 Exactly **25 comparators** are necessary and sufficient to select the sixth smallest of eleven inputs on wire 5, numbered from zero. The standard model uses a fixed sequence of compare–exchange operations, with each pair `i < j` sending the smaller value to wire `i`. The result allows arbitrary depth and includes inputs with ties. Bert Dobbelaere published the 25-comparator construction.
 
-**Artifact version 1.0.1.** Lean 4.19.0 proves `Median11.median11_optimal` using the verified witness and lower bounds. The kernel checks the decoded proof data for all 26 archived exclusions, comprising 174,008 nodes.
+**Artifact version 1.0.2.** Lean 4.19.0 proves `Median11.median11_optimal` using the verified witness and lower bounds. The kernel checks the decoded proof data for all 26 archived exclusions, comprising 174,008 nodes.
 
 | Entry point | Start here |
 |---|---|
 | Read the paper | [PDF](paper/main.pdf) · [LaTeX](paper/main.tex) · [Bibliography](paper/references.bib) |
+| Follow the proof without building Lean | [English proof sketch](PAPER.md) · [Spiegazione in italiano](PROOF.md) |
 | Verify the mathematical theorem | [Proof and formal status](docs/formal-verification.md) · [Kernel build script](scripts/verify-lean.sh) |
 | Verify the computational certificate | [Replay script](scripts/verify.sh) · [Format](docs/certificate.md) · [Claims](certificate/claims.json) |
 | Inspect the Lean formalization | [Lean project](formal) · [Optimality statement](formal/Median11/Optimality.lean) |
@@ -45,6 +46,8 @@ For individual runs, the original commands `python3 verify.py median11_25.json` 
 Selecting the correct output bit forces every remaining output bit to be fixed within each boundary layer. At the first comparison that reuses a wire, the earlier comparisons are disjoint. One extreme input can traverse both comparisons. Its current output still varies on a balanced boundary layer, so a later comparison must touch its wire. Removing the extreme removes at least three comparators. Apply this reasoning at widths eleven and ten, then replay the exclusions of size 18 for ranks four and five at width nine. Rank six follows by duality. The lower-bound model allows either orientation and any fixed output wire throughout.
 
 ## Archived versions
+
+The [v1.0.1 release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.1) contains the same proof sources and certificates as this editorial revision.
 
 Cite this artifact by its exact Git commit. From the repository root, `bash scripts/archive.sh /tmp/median-review HEAD` exports the selected commit to a ZIP with a SHA-256 checksum. The [stable 1.0.0 release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.0) and earlier DOI deposits identify distinct snapshots.
 

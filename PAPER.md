@@ -62,7 +62,7 @@ python3 verify.py median11_25.json
 python3 check_certificate.py
 ```
 
-The expected final lines are `n=11 size=25 errors=0/2048 first=[]` and `ACCEPT median(11) >= 25; 174008 proof nodes`, respectively. [Regeneration commands and additional checks](README.md#reproduce-the-self-review) are included for readers auditing the computation.
+The expected final lines are `n=11 size=25 errors=0/2048 first=[]` and `ACCEPT median(11) >= 25; 174008 proof nodes`, respectively. [Regeneration commands and additional checks](docs/reproducibility.md) are included for readers auditing the computation.
 
 ## Sources and status
 

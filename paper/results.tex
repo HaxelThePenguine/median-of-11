@@ -71,7 +71,16 @@ ports of type \texttt{Fin n}. The semantics apply each compare--exchange
 in sequence. Under \texttt{Standard}, the smaller value goes to the
 lower-numbered port. The Boolean rank predicate counts zeros. For
 ordered values, two counts compare each input with the output using
-strict and non-strict comparisons, so the definition handles ties.
+strict and non-strict comparisons. Explicitly, an output $v$ has rank $r$
+when
+\[
+  \#\{i:x_i<v\}<r\leq\#\{i:x_i\leq v\}.
+\]
+Both counts include multiplicities. For Boolean inputs the sixth
+smallest value is one exactly when at most five inputs are zero.
+The output index is fixed before quantifying over inputs. On any fixed
+domain with two distinct values, restricting inputs to those values
+embeds this Boolean problem and transfers the lower bound.
 
 The kernel checks threshold reduction, boundary-layer constancy, the
 three-encounter lemma, deletion via a moving wire bijection, rank
@@ -117,8 +126,9 @@ The first checks source-data agreement, rebuilds the Lean project and
 audits transitive axiom dependencies. The second executes the full replay.
 
 \section{Scope and limitations}
-The argument gives an exact size bound. It leaves optimal depth at
-size 25, adaptive comparison cost, and separate min/max cost open.
+The argument gives an exact size bound. Its cost measure counts each compare--exchange once. Optimal depth at
+size 25, adaptive comparison cost, and separate min/max costs are
+outside the scope of the theorem.
 Codish et al.\ use hybrid search and SAT for sorting \cite{codish}.
 The historical SAT runs for the unrestricted size-24 instance here
 returned unknown. The proof uses the combinatorial exclusion

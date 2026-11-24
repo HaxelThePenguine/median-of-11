@@ -2,7 +2,7 @@
 
 **Optimality of a 25-Comparator Median Selection Network on Eleven Inputs**
 
-Rocco Martino · Version 1.0.1
+Rocco Martino · Version 1.0.2
 
 - Read the [one-page review summary](summary.pdf) and [manuscript](../paper/main.pdf).
 - The [repository](https://github.com/HaxelThePenguine/median-of-11) contains the sources. For an immutable reference, cite the exact Git commit. The [stable 1.0.0 release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.0) identifies the earlier kernel-checked optimality proof.
@@ -10,7 +10,7 @@ Rocco Martino · Version 1.0.1
 
 ## What to review
 
-The proof rules out at most 24 comparators at unrestricted depth, giving a matching lower bound for Dobbelaere's 25-comparator witness. The most useful checks are the following.
+The proof excludes every network of size 24 or less at unrestricted depth, giving a matching lower bound for Dobbelaere's 25-comparator witness. The most useful checks are the following.
 
 1. Boundary-layer constancy keeps the full output vector fixed within each of the two threshold-adjacent weight layers. Review the Boolean cover proof in Section 3 and `boundary_constant` in [ConcreteBoundary.lean](../formal/Median11/ConcreteBoundary.lean).
 2. At the first reuse of a wire, both gate inputs have combined support size at most four. The same boundary layer supplies all-zero and all-one assignments on that support. Review Section 4 and [three_comparisons](../formal/Median11/ExtremePath.lean).

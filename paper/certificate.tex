@@ -97,8 +97,14 @@ and five on nine inputs. Rank duality covers rank six. Thus
 \]
 The layer of weight five has respectively five and six zeros at widths ten
 and eleven. It is a boundary layer for each of $(10,5),(10,6),(11,6)$.
-Applying \cref{cor:step} to the first two gives a lower bound of 22 in
-both cases. Applying it to the third gives 25. This suffices for the
+Hence the two applications of \cref{cor:step} give
+\[
+\begin{aligned}
+ C(10,5)&\ge 3+\min\{C(9,4),C(9,5)\}\ge22,\\
+ C(10,6)&\ge 3+\min\{C(9,5),C(9,6)\}\ge22,\\
+ C(11,6)&\ge 3+\min\{C(10,5),C(10,6)\}\ge25.
+\end{aligned}
+\] This suffices for the
 fixed-wire, lower-index-minimum model. For the opposite inequality, the
 25 comparators in \cref{fig:net} yield the required bit on wire 5 on all
 $2^{11}$ binary inputs by exhaustive evaluation. Apply \cref{prop:zero}.

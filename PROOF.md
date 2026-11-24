@@ -1,6 +1,6 @@
 # Perché la rete da 25 è ottima
 
-La costruzione è quella di Bert Dobbelaere. Il limite inferiore è una prova finita per induzione sulla larghezza. Il certificato fornito permette di ripetere tutta l’induzione, inclusi i casi a 9 ingressi. Non richiede di assumere i risultati di un altro autore.
+Su undici ingressi il sesto valore in ordine crescente è la mediana. La rete di Bert Dobbelaere lo porta sul filo 5 con 25 comparatori. Per provare che 25 è il minimo occorre escludere ogni rete con al massimo 24 comparatori, qualunque sia la profondità. Il limite inferiore è una prova finita per induzione sulla larghezza. Il certificato fornito permette di ripetere tutta l’induzione, inclusi i casi a 9 ingressi. Non richiede di assumere i risultati di un altro autore.
 
 ## Due strati di input
 

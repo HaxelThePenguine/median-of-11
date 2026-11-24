@@ -4,7 +4,7 @@ Minimo dimostrato nel modello richiesto: **25 comparatori**. La costruzione è p
 
 ## Ripetere il controllo decisivo
 
-Dalla directory contenente questo file, con Python 3.10 o successivo:
+Dalla radice del repository, con Python 3.10 o successivo:
 
 ```sh
 python3 verify.py
@@ -25,6 +25,7 @@ python3 check_certificate.py rebuilt
 Ambiente utilizzato: Linux x86-64, Python 3.12.14, libz3 4.13.3 e g++ 14.2. I comandi di questa sezione richiedono la libreria condivisa Z3 rilevabile da Python e un compilatore C++17. Per la sola verifica finale bastano i comandi della prima sezione.
 
 ```sh
+cd experiments
 python3 synth.py control > control.new.jsonl
 python3 synth.py small --rlimit 3000000 > small.new.jsonl
 python3 synth.py wide --rlimit 1800000 > wide.new.jsonl
@@ -34,8 +35,8 @@ g++ -std=c++17 -O3 -march=native exact.cpp -o exact
 python3 templates.py > templates.new.txt
 ./exact < templates.new.txt > exact.new.log
 g++ -std=c++17 -O3 -march=native anneal.cpp -o anneal
-./anneal 11025 160 < 11-25.pairs > anneal25.log
-./anneal 11026 160 < 11-26.pairs > anneal26.log
+./anneal 11025 160 < 11-25.pairs > anneal25.new.log
+./anneal 11026 160 < 11-26.pairs > anneal26.new.log
 python3 repair.py > repair.new.txt
 ./exact < repair.new.txt > repair.new.log
 ```

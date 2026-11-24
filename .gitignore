@@ -2,8 +2,8 @@ __pycache__/
 rebuilt/
 rebuilt.jsonl
 *.new.*
-/anneal
-/exact
+/experiments/anneal
+/experiments/exact
 /paper/*.aux
 /paper/*.log
 /paper/*.out

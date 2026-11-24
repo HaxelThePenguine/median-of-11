@@ -6,6 +6,9 @@ import json
 import random
 import re
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from verify import failures, SEEDS
 
 lib = C.CDLL(ctypes.util.find_library("z3") or "libz3.so.4")

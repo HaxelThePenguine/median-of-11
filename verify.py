@@ -3,7 +3,7 @@ import argparse
 import json
 from pathlib import Path
 
-SEEDS = Path(__file__).with_name("seeds.json")
+SEEDS = Path(__file__).resolve().parent / "experiments" / "seeds.json"
 
 def failures(n, network):
     if n % 2 != 1 or any(not (0 <= i < j < n) for i, j in network):

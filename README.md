@@ -11,7 +11,7 @@ Exactly **25 comparators** are necessary and sufficient to select the sixth smal
 | Verify the mathematical theorem | [Proof and formal status](docs/formal-verification.md) · [Kernel build script](scripts/verify-lean.sh) |
 | Verify the computational certificate | [Replay script](scripts/verify.sh) · [Format](docs/certificate.md) · [Claims](certificate/claims.json) |
 | Inspect the Lean formalization | [Lean project](formal) · [Optimality statement](formal/Median11/Optimality.lean) |
-| Reproduce the experiments | [Verification and environment](docs/reproducibility.md) · [Search experiments](EXPERIMENTS.it.md) |
+| Reproduce the experiments | [Verification and environment](docs/reproducibility.md) · [Search experiments](experiments/README.md) |
 | Review the result | [One-page summary](review/summary.pdf) · [Reviewer guide](review/README.md) · [Adversarial report](docs/review-report.md) |
 | Cite this work | [Citation metadata](CITATION.cff) · [Archive versions](#archived-versions) |
 

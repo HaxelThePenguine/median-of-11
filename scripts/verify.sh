@@ -25,7 +25,7 @@ cat "$tmp/cpp.log"
 python3 verification/tests/mutations.py "$tmp/check"
 
 python3 lower.py --output "$tmp/rebuilt" > "$tmp/generator.log"
-diff -u bounds.jsonl "$tmp/generator.log"
+diff -u verification/records/bounds.jsonl "$tmp/generator.log"
 python3 verification/tests/compare.py "$tmp/rebuilt" "$tmp/ranks"
 "$tmp/check" "$tmp/rebuilt" > "$tmp/rebuilt.log"
 diff -u "$tmp/cpp.log" "$tmp/rebuilt.log"

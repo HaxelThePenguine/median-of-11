@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 244"
+     role="img" aria-labelledby="title description">
+  <title id="title">Dobbelaere's 25-comparator median network</title>
+  <desc id="description">Eleven wires, numbered zero to ten from top to bottom.
+    Comparators are executed from left to right. Each sends the smaller value
+    upward. The median leaves wire five at the right.</desc>
+  <rect width="840" height="244" rx="12" fill="#f8fafc"/>
+  <g stroke="#8e9aaa" stroke-width="1">
+    <path d="M40 22H790"/>
+    <path d="M40 42H790"/>
+    <path d="M40 62H790"/>
+    <path d="M40 82H790"/>
+    <path d="M40 102H790"/>
+    <path d="M40 122H790"/>
+    <path d="M40 142H790"/>
+    <path d="M40 162H790"/>
+    <path d="M40 182H790"/>
+    <path d="M40 202H790"/>
+    <path d="M40 222H790"/>
+  </g>
+  <g font-family="monospace" font-size="12" text-anchor="end" fill="#364152">
+    <text x="30" y="26">0</text>
+    <text x="30" y="46">1</text>
+    <text x="30" y="66">2</text>
+    <text x="30" y="86">3</text>
+    <text x="30" y="106">4</text>
+    <text x="30" y="126">5</text>
+    <text x="30" y="146">6</text>
+    <text x="30" y="166">7</text>
+    <text x="30" y="186">8</text>
+    <text x="30" y="206">9</text>
+    <text x="30" y="226">10</text>
+  </g>
+  <g stroke="#273549" fill="#273549" stroke-width="1.6">
+    <path d="M68 22V42"/>
+    <circle cx="68" cy="22" r="2.6"/>
+    <circle cx="68" cy="42" r="2.6"/>
+    <path d="M96 62V82"/>
+    <circle cx="96" cy="62" r="2.6"/>
+    <circle cx="96" cy="82" r="2.6"/>
+    <path d="M124 102V122"/>
+    <circle cx="124" cy="102" r="2.6"/>
+    <circle cx="124" cy="122" r="2.6"/>
+    <path d="M152 142V162"/>
+    <circle cx="152" cy="142" r="2.6"/>
+    <circle cx="152" cy="162" r="2.6"/>
+    <path d="M180 182V202"/>
+    <circle cx="180" cy="182" r="2.6"/>
+    <circle cx="180" cy="202" r="2.6"/>
+    <path d="M208 22V62"/>
+    <circle cx="208" cy="22" r="2.6"/>
+    <circle cx="208" cy="62" r="2.6"/>
+    <path d="M236 42V82"/>
+    <circle cx="236" cy="42" r="2.6"/>
+    <circle cx="236" cy="82" r="2.6"/>
+    <path d="M264 102V142"/>
+    <circle cx="264" cy="102" r="2.6"/>
+    <circle cx="264" cy="142" r="2.6"/>
+    <path d="M292 122V162"/>
+    <circle cx="292" cy="122" r="2.6"/>
+    <circle cx="292" cy="162" r="2.6"/>
+    <path d="M320 42V62"/>
+    <circle cx="320" cy="42" r="2.6"/>
+    <circle cx="320" cy="62" r="2.6"/>
+    <path d="M348 122V142"/>
+    <circle cx="348" cy="122" r="2.6"/>
+    <circle cx="348" cy="142" r="2.6"/>
+    <path d="M376 22V122"/>
+    <circle cx="376" cy="22" r="2.6"/>
+    <circle cx="376" cy="122" r="2.6"/>
+    <path d="M404 42V102"/>
+    <circle cx="404" cy="42" r="2.6"/>
+    <circle cx="404" cy="102" r="2.6"/>
+    <path d="M432 62V162"/>
+    <circle cx="432" cy="62" r="2.6"/>
+    <circle cx="432" cy="162" r="2.6"/>
+    <path d="M460 82V142"/>
+    <circle cx="460" cy="82" r="2.6"/>
+    <circle cx="460" cy="142" r="2.6"/>
+    <path d="M488 62V122"/>
+    <circle cx="488" cy="62" r="2.6"/>
+    <circle cx="488" cy="122" r="2.6"/>
+    <path d="M516 82V102"/>
+    <circle cx="516" cy="82" r="2.6"/>
+    <circle cx="516" cy="102" r="2.6"/>
+    <path d="M544 62V182"/>
+    <circle cx="544" cy="62" r="2.6"/>
+    <circle cx="544" cy="182" r="2.6"/>
+    <path d="M572 102V202"/>
+    <circle cx="572" cy="102" r="2.6"/>
+    <circle cx="572" cy="202" r="2.6"/>
+    <path d="M600 182V222"/>
+    <circle cx="600" cy="182" r="2.6"/>
+    <circle cx="600" cy="222" r="2.6"/>
+    <path d="M628 82V182"/>
+    <circle cx="628" cy="82" r="2.6"/>
+    <circle cx="628" cy="182" r="2.6"/>
+    <path d="M656 122V222"/>
+    <circle cx="656" cy="122" r="2.6"/>
+    <circle cx="656" cy="222" r="2.6"/>
+    <path d="M684 102V122"/>
+    <circle cx="684" cy="102" r="2.6"/>
+    <circle cx="684" cy="122" r="2.6"/>
+    <path d="M712 102V182"/>
+    <circle cx="712" cy="102" r="2.6"/>
+    <circle cx="712" cy="182" r="2.6"/>
+    <path d="M740 122V182"/>
+    <circle cx="740" cy="122" r="2.6"/>
+    <circle cx="740" cy="182" r="2.6"/>
+  </g>
+  <path d="M741 122H790" stroke="#12665e" stroke-width="2"/>
+  <circle cx="790" cy="122" r="3.5" fill="#12665e"/>
+  <text x="802" y="126" font-family="monospace" font-size="12" fill="#12665e">q</text>
+</svg>

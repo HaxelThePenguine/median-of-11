@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-: "${SOURCE_DATE_EPOCH:=1795132800}"
+: "${SOURCE_DATE_EPOCH:=1795478400}"
 export SOURCE_DATE_EPOCH FORCE_SOURCE_DATE=1
 (
   cd paper

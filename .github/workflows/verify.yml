@@ -3,6 +3,23 @@ on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
+  hygiene:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check tracked paths
+        run: python3 scripts/check-hygiene.py
+      - name: Scan tracked content for secrets
+        run: |
+          scanner="$(mktemp -d)"
+          snapshot="$(mktemp -d)"
+          archive=gitleaks_8.30.1_linux_x64.tar.gz
+          curl -fsSL --retry 3 "https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/$archive" -o "$scanner/$archive"
+          echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  $scanner/$archive" | sha256sum --check
+          tar -xf "$scanner/$archive" -C "$scanner" gitleaks
+          git archive HEAD | tar -xf - -C "$snapshot"
+          "$scanner/gitleaks" dir --redact=100 --no-banner "$snapshot"
+
   proof:
     runs-on: ubuntu-24.04
     steps:

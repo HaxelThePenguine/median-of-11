@@ -3,7 +3,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 python="${PYTHON:-python3}"
-sha256sum --check --quiet docs/proof.sha256
+sha256sum --check --quiet verification/records/proof.sha256
 "$python" scripts/generate-lean-witness.py --check
 "$python" scripts/generate-lean-certificate.py --max-width 9 --skip-claim 8-4 \
   --skip-claim 9-2 --skip-claim 9-3 --skip-claim 9-4 --skip-claim 9-5 \

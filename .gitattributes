@@ -1,5 +1,6 @@
 *.sh text eol=lf
+/paper/main.bbl text eol=lf
 /median11_25.json text eol=lf
 /verification/records/bounds.jsonl text eol=lf
 /formal/Median11/Witness.lean text eol=lf
-/docs/proof.sha256 text eol=lf
+/verification/records/proof.sha256 text eol=lf

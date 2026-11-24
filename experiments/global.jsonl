@@ -1,1 +1,0 @@
-{"case": "global", "template": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null], "result": "unknown", "iterations": [[16, "sat"], [28, "sat"], [40, "sat"], [52, "unknown"]], "network": null, "rlimit": 180000000, "z3": "4.13.3.0"}

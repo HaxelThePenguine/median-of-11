@@ -62,8 +62,9 @@ g++ -std=c++20 -O2 verification/independent/check.cpp \
 ./check certificate
 \end{verbatim}
 The \href{https://github.com/HaxelThePenguine/median-of-11}{project repository}
-includes the proof bytes, implementation and audit record;
-see \texttt{docs/reproducibility.md} and \texttt{docs/certificate.md}.
+includes the proof bytes, implementation and validation notes;
+see the \href{https://github.com/HaxelThePenguine/median-of-11/blob/main/docs/reproducibility.md}{reproduction guide}
+and \href{https://github.com/HaxelThePenguine/median-of-11/blob/main/docs/certificate-format.md}{certificate format}.
 
 \section{Formal Verification in Lean 4}\label{sec:lean}
 In Lean 4.19.0 a network is a list of oriented gates with distinct
@@ -146,9 +147,8 @@ so a common modelling error could affect all of them. Independent
 implementation refers to how the replay algorithms were written and
 executed within this project. Generative AI provided substantial
 assistance with mathematical exploration, implementation,
-verification, literature research, and manuscript preparation. This is
-an internally reviewed computer-assisted preprint awaiting external
-human peer review. The author is responsible for the mathematical claims
+verification, literature research, and manuscript preparation. External human
+peer review and historical priority remain open. The author is responsible for the mathematical claims
 and approval of the manuscript. The witness is reproduced with attribution to
 Bert Dobbelaere. Its source and upstream license are recorded separately
 from the original manuscript's license.

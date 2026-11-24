@@ -35,8 +35,6 @@ bash scripts/verify.sh
 
 The first command verifies the certificate and witness hashes, checks the witness and small replay data against their source artifacts, generates the block modules, runs a clean Lake build, and audits the transitive axioms. The second executes the full Lean replay for comparison with the standalone readers. The third independently checks the archive with Python and C++, tests corrupted inputs, and regenerates the original proof streams.
 
-The final lower bound and exact-size theorem depend on `propext`, `Classical.choice` and `Quot.sound`, as reported by `#print axioms`. The CI gate accepts only these standard Lean foundations and requires reports for every claim in the archive manifest and for both final theorems. Every block is verified with `decide +kernel`. The project relies on Lean core and Std.
+The final lower bound and exact-size theorems depend on `propext`, `Classical.choice` and `Quot.sound`, as reported by `#print axioms`. The CI gate accepts only these standard Lean foundations and requires reports for every claim in the archive manifest and for all three required theorem declarations. Each packed replay block is verified with `decide +kernel`. The project relies on Lean core and Std.
 
 The kernel verifies the mathematical deductions on the decoded data. Gzip decoding, archive hashes and preservation of the opcode stream during translation are checked by the host tools. The generator is therefore part of the archive-to-input correspondence, while the derived size bounds rely on the kernel and the stated axioms.
-
-The [release-candidate verification record](rc3-validation.md) describes the earlier monolithic replay attempts and the formal scope of version 1.0.0-rc.3.

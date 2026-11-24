@@ -1,4 +1,4 @@
-// C++20, zlib. Replay the release profile described in docs/certificate.md.
+// C++20, zlib. Replay the release profile described in docs/certificate-format.md.
 #include <algorithm>
 #include <array>
 #include <bit>

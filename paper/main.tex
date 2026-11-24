@@ -82,11 +82,13 @@ weight and is monotone in the coordinatewise order, in either orientation.
 For any threshold $t$ in a total order, applying $v\mapsto{\bf1}_{v\ge t}$
 commutes with each gate and with the $r$th order statistic.
 \begin{proposition}\label{prop:zero}
-A fixed output selects rank $r$ on every ordered input if and only if it is
-zero throughout $H_w$ and one throughout $H_{w+1}$.
+A fixed output selects rank $r$ on every input over a total order with at
+least two values if and only if it is zero throughout $H_w$ and one
+throughout $H_{w+1}$ in the Boolean model.
 \end{proposition}
 \begin{proof}
-Necessity follows on binary inputs. Extend an input of weight at most $w$
+For necessity, use any strict pair in the domain as the two Boolean
+values. For sufficiency, extend an input of weight at most $w$
 up to weight $w$, or restrict one of weight at least $w+1$ to weight $w+1$.
 Monotonicity gives the required bit. If an ordered output differs from the
 desired value, the larger of the two values is a separating threshold.

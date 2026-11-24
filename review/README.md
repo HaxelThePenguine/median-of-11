@@ -1,34 +1,13 @@
-# External reviewer package
+# External reviewer guide
 
-**Optimality of a 25-Comparator Median Selection Network on Eleven Inputs**
+Rocco Martino · Artifact version 1.0.3
 
-Rocco Martino · Version 1.0.3
+Read the [one-page summary](summary.pdf) and the [manuscript](../paper/main.pdf). The contribution is a matching lower bound for Dobbelaere's 25-comparator witness at unrestricted depth.
 
-- Read the [one-page review summary](summary.pdf) and [manuscript](../paper/main.pdf).
-- The [repository](https://github.com/HaxelThePenguine/median-of-11) contains the sources. For an immutable reference, cite the exact Git commit. The [v1.0.2 release](https://github.com/HaxelThePenguine/median-of-11/releases/tag/v1.0.2) archives the preceding manuscript revision.
-- The version-specific DOI [10.5281/zenodo.24397716](https://doi.org/10.5281/zenodo.24397716) identifies the immutable historical [v1.0.0-rc.2 snapshot](https://github.com/HaxelThePenguine/median-of-11/commit/0b5d0a32eda56327b504344ed3d949957a72e0a7).
+1. Review the Boolean cover argument in Section 3 and the [boundary-layer lemma](../formal/Median11/ConcreteBoundary.lean).
+2. Check the support bound at the first reuse of a wire in Section 4 and the [three-comparison lemma](../formal/Median11/ExtremePath.lean).
+3. Follow the moving wire bijection in the [sentinel deletion proof](../formal/Median11/Deletion.lean).
+4. Inspect the scope of a cached residual exclusion in the [packed replay](../formal/Median11/PackedReplay.lean) and [pruning lemmas](../formal/Median11/Pruning.lean). Section 5 of the paper explains why the earlier prefix may have different extreme routes.
+5. Trace the nine-wire exclusions and rank duality through the [lower bound](../formal/Median11/LowerBound.lean) and [optimality theorems](../formal/Median11/Optimality.lean).
 
-## What to review
-
-The proof excludes every network of size 24 or less at unrestricted depth, giving a matching lower bound for Dobbelaere's 25-comparator witness. The most useful checks are the following.
-
-1. Boundary-layer constancy keeps the full output vector fixed within each of the two threshold-adjacent weight layers. Review the Boolean cover proof in Section 3 and `boundary_constant` in [ConcreteBoundary.lean](../formal/Median11/ConcreteBoundary.lean).
-2. At the first reuse of a wire, both gate inputs have combined support size at most four. The same boundary layer supplies all-zero and all-one assignments on that support. Review Section 4 and [three_comparisons](../formal/Median11/ExtremePath.lean).
-3. Deletion removes a sentinel's comparisons while transporting the surviving values by a moving wire bijection. Verify that a valid interior rank still has an ordinary output. See [Deletion.lean](../formal/Median11/Deletion.lean).
-4. A cached exclusion is about the residual suffix problem. The replay checks the common permutation and the completion of the earlier expansion before reuse. Verify the transition from an actual prefix to residual images in [PackedReplay.lean](../formal/Median11/PackedReplay.lean) and [Pruning.lean](../formal/Median11/Pruning.lean).
-5. Trace the nine-wire bounds and rank duality through [LowerBound.lean](../formal/Median11/LowerBound.lean) and the exact-size theorem in [Optimality.lean](../formal/Median11/Optimality.lean).
-
-## Verification
-
-Use Python 3.10+, C++20 with zlib development headers, Lean 4.19.0, and LaTeX with latexmk.
-
-~~~sh
-bash scripts/verify.sh
-bash scripts/verify-lean.sh
-bash scripts/evaluate-lean-archive.sh
-bash scripts/build-paper.sh
-~~~
-
-The first command runs both unannotated replays, rejects damaged certificates, compares independent small-width exact results, checks the witness and regenerates the proof streams. The second checks Lean proofs and prints transitive axioms. The third executes the Lean checker over all 26 claims. See the [dependency map and exact status](../docs/formal-verification.md) and [adversarial review](../docs/review-report.md).
-
-Python and C++ are independent replay implementations within the same AI-assisted project. The independent reverse truth-table search covers all ranks at widths two through six. No external human referee has reviewed the proof or confirmed novelty. We welcome counterexamples, earlier references and scrutiny of the pruning rules and their transcription to Lean.
+The [reproduction guide](../docs/reproducibility.md) gives the build and replay commands. The [validation notes](../docs/validation.md) describe which properties the implementations check and how the original archive relates to the Lean input. Cite the Git commit used. External human peer review and historical priority remain open.

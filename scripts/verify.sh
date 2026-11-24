@@ -5,12 +5,14 @@ cd "$(dirname "$0")/.."
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
-sha256sum --check --quiet docs/proof.sha256
+sha256sum --check --quiet verification/records/proof.sha256
 python3 verify.py median11_25.json
 python3 verification/tests/witness.py
+python3 scripts/draw-witness.py > "$tmp/witness.svg"
+cmp paper/figures/network.svg "$tmp/witness.svg"
 python3 verify.py
-python3 corruption.py
-python3 audit_small.py
+python3 -m verification.tests.corruption
+python3 verification/tests/audit_small.py
 python3 verification/tests/structure.py
 
 c++ -std=c++20 -O2 -Wall -Wextra -Wpedantic -Werror \
